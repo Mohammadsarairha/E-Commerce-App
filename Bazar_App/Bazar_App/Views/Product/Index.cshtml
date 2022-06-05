@@ -2,10 +2,10 @@
 @using Bazar_App.Models.DTO
 @model List<ProductDto>
 
-<h4>Category Page</h4>
+<h3>Product Page</h3>
     <hr />
 <p>
-    <a href = "#">Create New</a>
+    <a asp-controller="Product" asp-action="Create">Create New</a>
 </p>
 <table border=1 class="table">
     <thead>
@@ -24,6 +24,15 @@
             </th>
             <th>
                 CategoryName
+            </th>
+            <th>
+                Edit
+            </th>
+            <th>    
+                Details
+            </th>
+            <th>
+                Delete
             </th>
         </tr>
     </thead>
@@ -46,15 +55,15 @@
                 @Html.DisplayFor(modelItem => item.CategoryName)
             </td>
             <td>
-                <a href="#">Edit</a> |
-                <a asp-controller="Product" asp-action="Details" asp-route-id=@item.Id>Details</a> |
-                <a href="#">Delete</a>
+                <a asp-controller="Product" asp-action="Edit" asp-route-id=@item.Id>Edit</a>
+            </td>
+            <td>
+                <a asp-controller="Product" asp-action="Details" asp-route-id=@item.Id>Details</a>
+            </td>
+            <td>
+                <a asp-controller="Product" asp-action="Delete" asp-route-id=@item.Id>Delete</a>
             </td>
         </tr>
 }
     </tbody>
 </table>
-
-<div>
-    <a asp-controller="Home" asp-action="Index" >Back to home page</a>
-</div>

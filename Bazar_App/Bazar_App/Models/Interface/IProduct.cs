@@ -11,5 +11,7 @@ namespace Bazar_App.Models.Interface
         Task<ProductDto> GetProduct(int Id);
         Task<ProductDto> Update(int Id, Product product);
         Task Delete(int id);
+        int GetProductCategory(string category);
+        Task<List<Category>> GetCategories();
     }
 }

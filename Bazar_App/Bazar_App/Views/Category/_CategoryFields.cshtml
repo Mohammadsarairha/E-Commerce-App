@@ -1,0 +1,11 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model Bazar_App.Models.Category
+
+    <label>
+        <span>Name</span>
+    </label>
+    <br />
+    <input asp-for="@Model.Name"/>
+    @Html.ValidationMessageFor(x => x.Name)
+    <br />
+    <br />

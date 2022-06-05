@@ -1,0 +1,15 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model Bazar_App.Models.DTO.ProductCategoryDto
+
+<h3>Add a new product</h3>
+
+<form asp-controller="Product" asp-action="Create" method="post">
+    <partial name="_ProductFields"></partial>
+
+    <button type="submit">
+            Add Product
+    </button>
+    <br />
+</form>
+
+@*<div asp-validation-summary="All"></div>*@

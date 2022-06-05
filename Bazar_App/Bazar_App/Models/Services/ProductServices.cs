@@ -22,7 +22,7 @@ namespace Bazar_App.Models.Services
             _context.Entry(product).State = EntityState.Added;
             await _context.SaveChangesAsync();
 
-            ProductDto productDto = new ProductDto()
+            ProductDto productDto = new ProductDto
             {
                 Id = product.Id,
                 Name = product.Name,
@@ -79,6 +79,20 @@ namespace Bazar_App.Models.Services
             Product product = await _context.Product.FindAsync(id);
             _context.Entry(product).State = EntityState.Deleted;
             await _context.SaveChangesAsync();
+        }
+
+        public int GetProductCategory(string category)
+        {
+            int catId = _context.Categories.FirstOrDefault(cat => cat.Name == category).Id;
+
+            return catId;
+        }
+
+        public async Task<List<Category>> GetCategories()
+        {
+            List<Category> categories = await _context.Categories.ToListAsync();
+
+            return categories;
         }
     }
 }

@@ -5,6 +5,12 @@
 <div>
     <h4>@Model.Name</h4>
     <hr />
+    @if (Model.Products.Count == 0)
+            {
+        <p>No product found in this Category</p>
+    }
+    else
+    {
     <table border=1 class="table">
     <thead>
         <tr>
@@ -41,7 +47,5 @@
         }
     </tbody>
 </table>
-</div>
-<div>
-    <a asp-controller="Category" asp-action="Index" >Back to List</a>
+}
 </div>

@@ -23,7 +23,7 @@ namespace Bazar_App.Models.Services
 
             await _context.SaveChangesAsync();
 
-            CategoryDto categorydto = new CategoryDto()
+            CategoryDto categorydto = new CategoryDto
             {
                 Id = category.Id,
                 Name = category.Name
