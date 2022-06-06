@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "SPQN98NG4es+y4+pGBtb2SS3uEn2fpbOXOxuyujgEm7+mOIrK/1MQrOZoiVnGmx389Dus+KZbyE++03YJAbOUA==",
+  "dgSpecHash": "rOpyDsBpcBEhh76qt3WKBFDl7xl0Gofx0/d88JFIIGsxazFmlo0eD20dsJhBtn7NZYS5cvLoL/YNtaRIww/szA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\HP\\DotnetProject\\Bazar_App\\Bazar_App\\Bazar_App.csproj",
+  "projectFilePath": "C:\\Users\\HP\\Source\\Repos\\E-Commerce-App\\Bazar_App\\Bazar_App\\Bazar_App.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\HP\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\HP\\.nuget\\packages\\microsoft.aspnetcore.html.abstractions\\2.2.0\\microsoft.aspnetcore.html.abstractions.2.2.0.nupkg.sha512",

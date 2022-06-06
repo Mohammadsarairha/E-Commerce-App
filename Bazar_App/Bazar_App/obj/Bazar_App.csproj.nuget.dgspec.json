@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\HP\\DotnetProject\\Bazar_App\\Bazar_App\\Bazar_App.csproj": {}
+    "C:\\Users\\HP\\Source\\Repos\\E-Commerce-App\\Bazar_App\\Bazar_App\\Bazar_App.csproj": {}
   },
   "projects": {
-    "C:\\Users\\HP\\DotnetProject\\Bazar_App\\Bazar_App\\Bazar_App.csproj": {
+    "C:\\Users\\HP\\Source\\Repos\\E-Commerce-App\\Bazar_App\\Bazar_App\\Bazar_App.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\HP\\DotnetProject\\Bazar_App\\Bazar_App\\Bazar_App.csproj",
+        "projectUniqueName": "C:\\Users\\HP\\Source\\Repos\\E-Commerce-App\\Bazar_App\\Bazar_App\\Bazar_App.csproj",
         "projectName": "Bazar_App",
-        "projectPath": "C:\\Users\\HP\\DotnetProject\\Bazar_App\\Bazar_App\\Bazar_App.csproj",
+        "projectPath": "C:\\Users\\HP\\Source\\Repos\\E-Commerce-App\\Bazar_App\\Bazar_App\\Bazar_App.csproj",
         "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\HP\\DotnetProject\\Bazar_App\\Bazar_App\\obj\\",
+        "outputPath": "C:\\Users\\HP\\Source\\Repos\\E-Commerce-App\\Bazar_App\\Bazar_App\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config",
