@@ -1,6 +1,7 @@
 ﻿using Bazar_App.Models;
 using Bazar_App.Models.DTO;
 using Bazar_App.Models.Interface;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -30,12 +31,12 @@ namespace Bazar_App.Controllers
 
             return View(category);
         }
-
+        
         public IActionResult Create()
         {
             return View();
         }
-
+        
         [HttpPost]
         public async Task<ActionResult> Create(Category category)
         {
