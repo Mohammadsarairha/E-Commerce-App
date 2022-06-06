@@ -1,0 +1,25 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model Bazar_App.Auth.Models.Dto.LoginDto
+
+<form asp-controller="Auth" asp-action="Authenticate" method="post">
+    <br />
+    <br />
+    <label>
+        <span>UserName</span>
+    </label>
+    <br />
+    <input asp-for="@Model.UserName"/>
+    @Html.ValidationMessageFor(x => x.UserName)
+    <br />
+    <label>
+        <span>Password</span>
+    </label>
+    <br />
+    <input type="password" asp-for="@Model.Password"/>
+    @Html.ValidationMessageFor(x => x.Password)
+    <br />
+    <br />
+    <button type="submit">Login</button>
+</form>
+
+<div asp-validation-summary="All"></div>

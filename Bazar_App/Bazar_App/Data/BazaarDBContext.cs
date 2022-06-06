@@ -1,10 +1,12 @@
 ﻿using Bazar_App.Models;
 using Microsoft.EntityFrameworkCore;
 using Bazar_App.Models.DTO;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Bazar_App.Auth.Models;
 
 namespace Bazar_App.Data
 {
-    public class BazaarDBContext : DbContext
+    public class BazaarDBContext : IdentityDbContext<ApplicationUser>
     {
         public DbSet<Product> Product { get; set; }
         public DbSet<Category> Categories { get; set; }
@@ -34,6 +36,10 @@ namespace Bazar_App.Data
             new Product { Id = 8, Name = "Tecno Spark 8 Pro", Price = 432.00, Description = "Tecno Spark 8 Pro (Turquoise Cyan, 7GB Expandable RAM 64GB Storage)", CategoryId = 3 }
             );
         }
-        public DbSet<Bazar_App.Models.DTO.CategoryDto> CategoryDto { get; set; }
+
+        //private void SeedRoles(ModelBuilder modelBuilder, string roleName)
+        //{
+        //    var role = new IdentityRole
+        //}
     }
 }
