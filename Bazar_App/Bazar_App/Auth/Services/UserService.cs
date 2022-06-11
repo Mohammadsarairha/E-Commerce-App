@@ -11,8 +11,8 @@ namespace Bazar_App.Auth.Services
 {
     public class UserService : IUserService
     {
-        private UserManager<ApplicationUser> _userManager;
-        private SignInManager<ApplicationUser> _signInManager;
+        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly SignInManager<ApplicationUser> _signInManager;
 
         public UserService(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> SignInMngr)
         {
@@ -74,6 +74,11 @@ namespace Bazar_App.Auth.Services
             {
                 Username = user.UserName
             };
+        }
+
+        public async Task Logout()
+        {
+            await _signInManager.SignOutAsync();
         }
     }
 }

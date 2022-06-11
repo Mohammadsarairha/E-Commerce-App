@@ -1,4 +1,5 @@
 ﻿using Bazar_App.Models.DTO;
+using Microsoft.AspNetCore.Http;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -13,5 +14,6 @@ namespace Bazar_App.Models.Interface
         Task Delete(int id);
         int GetProductCategory(string category);
         Task<List<Category>> GetCategories();
+        Task<string> Uplode(IFormFile file);
     }
 }

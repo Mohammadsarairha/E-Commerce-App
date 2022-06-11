@@ -40,7 +40,7 @@ namespace Bazar_App
             // Invalid user redirects
             services.ConfigureApplicationCookie(options =>
             {
-                options.AccessDeniedPath = "/Auth/index";
+                options.LoginPath = new PathString("/Auth/Index");
             });
 
             // Alternative to JWT, use the built-in authentication system

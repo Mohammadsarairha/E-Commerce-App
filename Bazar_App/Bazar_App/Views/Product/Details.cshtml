@@ -23,6 +23,9 @@
             <th>
                 CategoryName
             </th>
+            <th>
+                Photo
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -41,6 +44,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => modelItem.CategoryName)
+            </td>
+            <td>
+                <img src="@Model.ImgUrl" style="width:80px; height:80px"/>
             </td>
      </tr>
     </tbody>

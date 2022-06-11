@@ -3,9 +3,9 @@
 
 <h3>Add a new product</h3>
 
-<form asp-controller="Product" asp-action="Create" method="post">
+<form asp-controller="Product" asp-action="Create" method="post" enctype="multipart/form-data">
     <partial name="_ProductFields"></partial>
-
+    <br />
     <button type="submit">
             Add Product
     </button>

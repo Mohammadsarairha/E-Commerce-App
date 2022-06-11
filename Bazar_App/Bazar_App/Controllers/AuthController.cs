@@ -7,7 +7,7 @@ namespace Bazar_App.Controllers
 {
     public class AuthController : Controller
     {
-        private IUserService _userService;
+        private readonly IUserService _userService;
 
         public AuthController(IUserService userService)
         {
@@ -16,12 +16,27 @@ namespace Bazar_App.Controllers
 
         public IActionResult Index()
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Index", "Home");
+            }
             return View();
         }
 
         public IActionResult SignUp()
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Index", "Home");
+            }
             return View();
+        }
+
+        public async Task<IActionResult> Logout()
+        {
+            await _userService.Logout();
+
+            return RedirectToAction("Index","Home");
         }
 
         [HttpPost]
@@ -29,7 +44,7 @@ namespace Bazar_App.Controllers
         {
             if (register.UserName != null && register.Email != null && register.Password != null)
             {
-                var user = await _userService.Register(register, this.ModelState);
+                await _userService.Register(register, this.ModelState);
             }
 
             if (ModelState.IsValid)
@@ -39,7 +54,7 @@ namespace Bazar_App.Controllers
 
             return View();
         }
-
+        [HttpPost]
         public async Task<ActionResult<UserDto>> Authenticate(LoginDto login)
         {
             var user = await _userService.Authenticate(login.UserName, login.Password);
