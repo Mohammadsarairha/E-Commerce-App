@@ -1,7 +1,11 @@
-﻿using Bazar_App.Models;
+﻿using Azure.Storage.Blobs;
+using Azure.Storage.Blobs.Models;
+using Bazar_App.Models;
 using Bazar_App.Models.DTO;
 using Bazar_App.Models.Interface;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -45,13 +49,18 @@ namespace Bazar_App.Controllers
         public async Task<ActionResult> Create(ProductCategoryDto newProduct)
         {
             newProduct.Categories = await _prouduct.GetCategories();
-
+            if (newProduct.File != null)
+            {
+                newProduct.ImgUrl = await _prouduct.Uplode(newProduct.File);
+            }
+            
             Product product = new Product
             {
                 Id = newProduct.Id,
                 Name = newProduct.Name,
                 Price = newProduct.Price,
                 Description = newProduct.Description,
+                ImgUrl = newProduct.ImgUrl,
                 CategoryId = _prouduct.GetProductCategory(newProduct.CategoryName)
             };
             //newProduct.CategoryId = _prouduct.GetProductCategory(newProduct.Category.Name);
@@ -70,27 +79,37 @@ namespace Bazar_App.Controllers
             return View(newProduct);
         }
 
-        public async Task<ActionResult<Product>> Edit(int id)
+        public async Task<ActionResult> Edit(int id)
         {
             ProductDto productDto = await _prouduct.GetProduct(id);
 
-            Product product = new Product
+            ProductCategoryDto product = new ProductCategoryDto
             {
                 Id = productDto.Id,
                 Name = productDto.Name,
                 Price = productDto.Price,
                 Description = productDto.Description,
-                CategoryId = _prouduct.GetProductCategory(productDto.CategoryName)
+                ImgUrl = productDto.ImgUrl,
+                Categories = await _prouduct.GetCategories()
             };
 
             return View(product);
         }
 
         [HttpPost]
-        public async Task<ActionResult> Edit(Product product)
+        public async Task<ActionResult> Edit(ProductCategoryDto product)
         {
-            product.CategoryId = _prouduct.GetProductCategory(product.Category.Name);
+            product.ImgUrl = await _prouduct.Uplode(product.File);
 
+            Product productNew = new Product
+            {
+                Id = product.Id,
+                Name = product.Name,
+                Price = product.Price,
+                Description = product.Description,
+                ImgUrl = product.ImgUrl,
+                CategoryId = _prouduct.GetProductCategory(product.CategoryName)
+            };
             if (product.Price <= 0)
             {
                 ModelState.AddModelError("Price", "The Price must be more than zero");
@@ -98,7 +117,7 @@ namespace Bazar_App.Controllers
 
             if (ModelState.IsValid)
             {
-                await _prouduct.Update(product.Id,product);
+                await _prouduct.Update(product.Id, productNew);
 
                 return RedirectToAction("Index");
             }
@@ -108,6 +127,8 @@ namespace Bazar_App.Controllers
 
         public async Task<ActionResult> Delete(int id)
         {
+            ProductDto productDto = await _prouduct.GetProduct(id);
+
             await _prouduct.Delete(id);
             return RedirectToAction("Index");
         }

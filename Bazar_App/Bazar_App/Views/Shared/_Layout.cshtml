@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@using Bazar_App.Auth.Models
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> signInManager
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
@@ -29,7 +33,6 @@ li.navli a {
   padding: 14px 16px;
   text-decoration: none;
 }
-
 li.navli a:hover {
   background-color: #111;
 }
@@ -37,17 +40,20 @@ li.navli a:hover {
 </head>
 <body>
     <div>
-        <div>
-            <div>
                 <ul class="nav">
                     <li class="navli">@Html.ActionLink("Home", "Index", "Home")</li>
                     <li class="navli">@Html.ActionLink("Categories", "Index", "Category")</li>
                     <li class="navli">@Html.ActionLink("Products", "Index", "Product")</li>
-                    <li class="navli">@Html.ActionLink("SignUp", "SignUp", "Auth")</li>
-                    <li class="navli">@Html.ActionLink("LogIn", "Index", "Auth")</li>
+                    @if (signInManager.IsSignedIn(User))
+                    {
+                        <li class="navli">@Html.ActionLink($"Hi {@User.Identity.Name}", "", "")</li>
+                        <li class="navli">@Html.ActionLink("LogOut", "LogOut", "Auth")</li>
+                    }else
+                    {
+                        <li class="navli">@Html.ActionLink("SignUp", "SignUp", "Auth")</li>
+                        <li class="navli">@Html.ActionLink("LogIn", "Index", "Auth")</li>
+                    }
                 </ul>
-            </div>
-        </div>
     </div>
     <div>
         @RenderBody()

@@ -311,3 +311,8 @@ C:\Users\HP\Source\Repos\E-Commerce-App\Bazar_App\Bazar_App\bin\Debug\net5.0\Mic
 C:\Users\HP\Source\Repos\E-Commerce-App\Bazar_App\Bazar_App\bin\Debug\net5.0\Microsoft.Extensions.Identity.Stores.dll
 C:\Users\HP\source\repos\E-Commerce-App\Bazar_App\Bazar_App\obj\Debug\net5.0\Razor\Views\Auth\Index.cshtml.g.cs
 C:\Users\HP\source\repos\E-Commerce-App\Bazar_App\Bazar_App\obj\Debug\net5.0\Razor\Views\Auth\SignUp.cshtml.g.cs
+C:\Users\HP\source\repos\E-Commerce-App\Bazar_App\Bazar_App\bin\Debug\net5.0\Azure.Core.dll
+C:\Users\HP\source\repos\E-Commerce-App\Bazar_App\Bazar_App\bin\Debug\net5.0\Azure.Storage.Blobs.dll
+C:\Users\HP\source\repos\E-Commerce-App\Bazar_App\Bazar_App\bin\Debug\net5.0\Azure.Storage.Common.dll
+C:\Users\HP\source\repos\E-Commerce-App\Bazar_App\Bazar_App\bin\Debug\net5.0\System.IO.Hashing.dll
+C:\Users\HP\source\repos\E-Commerce-App\Bazar_App\Bazar_App\bin\Debug\net5.0\System.Memory.Data.dll

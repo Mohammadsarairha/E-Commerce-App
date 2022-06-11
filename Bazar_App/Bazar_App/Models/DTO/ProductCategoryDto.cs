@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.AspNetCore.Http;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Bazar_App.Models.DTO
@@ -11,6 +12,8 @@ namespace Bazar_App.Models.DTO
         [Required(ErrorMessage = "Price is required")]
         public double? Price { get; set; }
         public string Description { get; set; }
+        public IFormFile File { get; set; }
+        public string ImgUrl { get; set; }
         public string CategoryName { get; set; }
 
         public List<Category> Categories { get; set; }

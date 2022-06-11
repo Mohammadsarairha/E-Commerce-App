@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace Bazar_App.Controllers
 {
+    [Authorize]
     public class CategoryController : Controller
     {
         private readonly ICategory _category;

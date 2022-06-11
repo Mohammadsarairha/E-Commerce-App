@@ -7,9 +7,9 @@ namespace Bazar_App.Auth.Interfaces
 {
     public interface IUserService
     {
-        public Task<UserDto> Register(RegisterDto registerDto, ModelStateDictionary modelstate);
-        public Task<UserDto> Authenticate(string username, string password);
-        public Task<UserDto> GetUser(ClaimsPrincipal principal);
-
+        Task<UserDto> Register(RegisterDto registerDto, ModelStateDictionary modelstate);
+        Task<UserDto> Authenticate(string username, string password);
+        Task<UserDto> GetUser(ClaimsPrincipal principal);
+        Task Logout();
     }
 }

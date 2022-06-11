@@ -1,7 +1,11 @@
-﻿using Bazar_App.Data;
+﻿using Azure.Storage.Blobs;
+using Azure.Storage.Blobs.Models;
+using Bazar_App.Data;
 using Bazar_App.Models.DTO;
 using Bazar_App.Models.Interface;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -11,10 +15,11 @@ namespace Bazar_App.Models.Services
     public class ProductServices : IProduct
     {
         private readonly BazaarDBContext _context;
-
-        public ProductServices(BazaarDBContext context)
+        private readonly IConfiguration configuration;
+        public ProductServices(BazaarDBContext context , IConfiguration config)
         {
             _context = context;
+            configuration = config;
         }
 
         public async Task<ProductDto> Create(Product product)
@@ -28,6 +33,7 @@ namespace Bazar_App.Models.Services
                 Name = product.Name,
                 Price = product.Price,
                 Description = product.Description,
+                ImgUrl = product.ImgUrl,
                 CategoryName = _context.Categories.FirstOrDefault(cat => cat.Id == product.CategoryId).Name
             };
 
@@ -42,6 +48,7 @@ namespace Bazar_App.Models.Services
                 Name = X.Name,
                 Price = X.Price,
                 Description = X.Description,
+                ImgUrl = X.ImgUrl,
                 CategoryName = _context.Categories.FirstOrDefault(cat => cat.Id == X.CategoryId).Name
             }).FirstOrDefaultAsync(x => x.Id == Id);
         }
@@ -54,6 +61,7 @@ namespace Bazar_App.Models.Services
                 Name = X.Name,
                 Price = X.Price,
                 Description = X.Description,
+                ImgUrl = X.ImgUrl,
                 CategoryName = _context.Categories.FirstOrDefault(cat => cat.Id == X.CategoryId).Name
             }).ToListAsync();
         }
@@ -66,6 +74,7 @@ namespace Bazar_App.Models.Services
                 Name = product.Name,
                 Description = product.Description,
                 Price = product.Price,
+                ImgUrl = product.ImgUrl,
                 CategoryName = _context.Categories.FirstOrDefault(cat => cat.Id == product.CategoryId).Name
             };
             _context.Entry(product).State = EntityState.Modified;
@@ -93,6 +102,27 @@ namespace Bazar_App.Models.Services
             List<Category> categories = await _context.Categories.ToListAsync();
 
             return categories;
+        }
+
+        public async Task<string> Uplode(IFormFile file)
+        {
+            BlobContainerClient container = new BlobContainerClient(configuration.GetConnectionString("AzureContainers"), "img");
+            await container.CreateIfNotExistsAsync();
+            BlobClient blob = container.GetBlobClient(file.FileName);
+            using var stream = file.OpenReadStream();
+
+            BlobUploadOptions options = new BlobUploadOptions()
+            {
+                HttpHeaders = new BlobHttpHeaders() { ContentType = file.ContentType }
+            }; if (!blob.Exists())
+            {
+                await blob.UploadAsync(stream, options);
+            }
+            stream.Close();
+
+            string imgUrl = blob.Uri.ToString();
+
+            return imgUrl;
         }
     }
 }

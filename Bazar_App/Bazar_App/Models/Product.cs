@@ -9,6 +9,7 @@ namespace Bazar_App.Models
         [Required]
         public double? Price { get; set; }
         public string Description { get; set; }
+        public string ImgUrl { get; set; }
         public int CategoryId { get; set; }
         //Navigation properties
         public Category Category { get; set; }
