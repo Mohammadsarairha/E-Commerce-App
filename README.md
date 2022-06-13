@@ -65,3 +65,7 @@ from this point and because we belive that selling and buying is part and parcel
 - As an administrator I would like to be able to delete products and categories as needed
 - As an administrator I would like to be able to edit/modify categories so that I can change my storefront structure in real time
 - As an administrator I would like to be able to edit/modify products so that I can change my inventory in real time
+
+## Azure deployment 
+
+[Bazar App](https://bazarapp.azurewebsites.net/)
