@@ -3,6 +3,7 @@ using Azure.Storage.Blobs.Models;
 using Bazar_App.Models;
 using Bazar_App.Models.DTO;
 using Bazar_App.Models.Interface;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
