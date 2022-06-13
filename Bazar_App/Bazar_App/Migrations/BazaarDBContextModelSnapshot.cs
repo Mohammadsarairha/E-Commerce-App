@@ -153,6 +153,7 @@ namespace Bazar_App.Migrations
                             Id = 1,
                             CategoryId = 1,
                             Description = "Maybelline New York Colossal Bold Liner & Colossal Kajal",
+                            ImgUrl = "https://bazartest.blob.core.windows.net/img/Liner.jpg",
                             Name = "Liner & Colossal Kajal",
                             Price = 15.5
                         },
@@ -161,6 +162,7 @@ namespace Bazar_App.Migrations
                             Id = 2,
                             CategoryId = 1,
                             Description = "URBANMAC Premium Synthetic Kabuki Foundation Face Powder",
+                            ImgUrl = "https://bazartest.blob.core.windows.net/img/Blushes.jpg",
                             Name = "Blushes",
                             Price = 20.0
                         },
@@ -169,6 +171,7 @@ namespace Bazar_App.Migrations
                             Id = 3,
                             CategoryId = 1,
                             Description = "Coloressence Full Coverage Waterproof Lightweight",
+                            ImgUrl = "https://bazartest.blob.core.windows.net/img/Foundation.jpg",
                             Name = "Foundation ",
                             Price = 50.0
                         },
@@ -177,6 +180,7 @@ namespace Bazar_App.Migrations
                             Id = 4,
                             CategoryId = 2,
                             Description = "HIKIPO Presents 100% Cotton Born Baby",
+                            ImgUrl = "https://bazartest.blob.core.windows.net/img/CottonBornBaby.jpg",
                             Name = "Cotton Born Baby",
                             Price = 15.0
                         },
@@ -185,6 +189,7 @@ namespace Bazar_App.Migrations
                             Id = 5,
                             CategoryId = 2,
                             Description = "Babyblossom Baby Kid's Cotton Combo Pack Of 3",
+                            ImgUrl = "https://bazartest.blob.core.windows.net/img/Kid'sCottonClothing.jpg",
                             Name = "Kid's Cotton Combo Pack Of 3 Clothing Set",
                             Price = 243.0
                         },
@@ -193,14 +198,16 @@ namespace Bazar_App.Migrations
                             Id = 6,
                             CategoryId = 2,
                             Description = "Scott International Men's Regular",
+                            ImgUrl = "https://bazartest.blob.core.windows.net/img/Men'sT-Shirt.jpg",
                             Name = "Men's Regular Fit T-Shirt",
-                            Price = 120.0
+                            Price = 20.0
                         },
                         new
                         {
                             Id = 7,
                             CategoryId = 3,
                             Description = "Oppo A54 (Starry Blue, 6GB RAM, 128GB Storage)",
+                            ImgUrl = "https://bazartest.blob.core.windows.net/img/OppoA54.png",
                             Name = "Oppo A54",
                             Price = 123.0
                         },
@@ -209,6 +216,7 @@ namespace Bazar_App.Migrations
                             Id = 8,
                             CategoryId = 3,
                             Description = "Tecno Spark 8 Pro (Turquoise Cyan, 7GB Expandable RAM 64GB Storage)",
+                            ImgUrl = "https://bazartest.blob.core.windows.net/img/TecnoSpark8Pro.png",
                             Name = "Tecno Spark 8 Pro",
                             Price = 432.0
                         });

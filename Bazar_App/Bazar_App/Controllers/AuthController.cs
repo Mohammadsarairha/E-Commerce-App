@@ -27,7 +27,7 @@ namespace Bazar_App.Controllers
         {
             if (User.Identity.IsAuthenticated)
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Auth");
             }
             return View();
         }
