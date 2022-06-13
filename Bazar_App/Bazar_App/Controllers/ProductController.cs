@@ -34,7 +34,7 @@ namespace Bazar_App.Controllers
 
             return View(product);
         }
-
+        [Authorize]
         public async Task<ActionResult> Create()
         {
             ProductCategoryDto categoryDto = new ProductCategoryDto
@@ -78,7 +78,7 @@ namespace Bazar_App.Controllers
             }
             return View(newProduct);
         }
-
+        [Authorize]
         public async Task<ActionResult> Edit(int id)
         {
             ProductDto productDto = await _prouduct.GetProduct(id);
@@ -124,7 +124,7 @@ namespace Bazar_App.Controllers
 
             return View(product);
         }
-
+        [Authorize]
         public async Task<ActionResult> Delete(int id)
         {
             ProductDto productDto = await _prouduct.GetProduct(id);

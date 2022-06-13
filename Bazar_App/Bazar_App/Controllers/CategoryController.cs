@@ -32,7 +32,7 @@ namespace Bazar_App.Controllers
 
             return View(category);
         }
-        
+        [Authorize]
         public IActionResult Create()
         {
             return View();
@@ -49,7 +49,7 @@ namespace Bazar_App.Controllers
 
             return View(category);
         }
-
+        [Authorize]
         public async Task<ActionResult<Category>> Edit(int id)
         {
             CategoryDto categoryDto = await _category.GetCategory(id);
@@ -75,7 +75,7 @@ namespace Bazar_App.Controllers
 
             return View(category);
         }
-
+        [Authorize]
         public async Task<ActionResult> Delete(int id)
         {
             await _category.Delete(id);
