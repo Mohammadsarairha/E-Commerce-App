@@ -1,0 +1,31 @@
+﻿@page
+@model Bazar_App.Pages.Accounts.SignupModel
+@{
+}
+
+<div class="container">
+  <form class="form" method="post">
+    <br />
+    <br />
+    <label>
+        <span>Username</span>
+    </label>
+    <br />
+    <input id="input" asp-for="registerData.UserName"/>
+    <br />
+    <label>
+        <span>Email</span>
+    </label>
+    <br />
+    <input id="input" asp-for="registerData.Email"/>
+    <br />
+    <label>
+        <span>Password</span>
+    </label>
+    <br />
+    <input id="input" type="password" asp-for="registerData.Password"/>
+    <br />
+    <button id="submit" type="submit">SignUp</button>
+</form>
+<div class="no-bullets" asp-validation-summary="All"></div>
+</div>

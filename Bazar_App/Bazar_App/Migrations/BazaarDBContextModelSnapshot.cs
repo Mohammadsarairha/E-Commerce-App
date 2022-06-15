@@ -91,6 +91,9 @@ namespace Bazar_App.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("Imgurl")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -103,16 +106,19 @@ namespace Bazar_App.Migrations
                         new
                         {
                             Id = 1,
+                            Imgurl = "https://bazartest.blob.core.windows.net/img/BeautyCategory.jpg",
                             Name = "Beauty"
                         },
                         new
                         {
                             Id = 2,
+                            Imgurl = "https://bazartest.blob.core.windows.net/img/ClothesCategorys.jpg",
                             Name = "Clothes"
                         },
                         new
                         {
                             Id = 3,
+                            Imgurl = "https://bazartest.blob.core.windows.net/img/Mobile-Category.jpg",
                             Name = "Mobiles"
                         });
                 });

@@ -128,8 +128,6 @@ namespace Bazar_App.Controllers
         [Authorize]
         public async Task<ActionResult> Delete(int id)
         {
-            ProductDto productDto = await _prouduct.GetProduct(id);
-
             await _prouduct.Delete(id);
             return RedirectToAction("Index");
         }

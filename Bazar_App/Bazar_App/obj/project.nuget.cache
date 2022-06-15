@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ajFID4xJGjTyosAh1IHWQ8WZ9vLJhk6QRTnMsvsFZYIrGQ6i42h8LImgWcRYRSIydBE0sxoSCakQ/spHgqPtVg==",
+  "dgSpecHash": "uK5x4BXLZWkTf+rVec2GEN2EYUECKpoxmLMiMgA+8lCf59GhEJuHTBao6yT7QGRN3MLnQ+Utw2ufkMJ1oxSDVw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\HP\\Source\\Repos\\E-Commerce-App\\Bazar_App\\Bazar_App\\Bazar_App.csproj",
+  "projectFilePath": "C:\\Users\\HP\\source\\repos\\E-Commerce-App\\Bazar_App\\Bazar_App\\Bazar_App.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\HP\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\HP\\.nuget\\packages\\azure.identity\\1.0.0\\azure.identity.1.0.0.nupkg.sha512",

@@ -320,3 +320,11 @@ C:\Users\HP\Source\Repos\E-Commerce-App\Bazar_App\Bazar_App\bin\Debug\net5.0\Azu
 C:\Users\HP\Source\Repos\E-Commerce-App\Bazar_App\Bazar_App\bin\Debug\net5.0\Azure.Storage.Files.Shares.dll
 C:\Users\HP\Source\Repos\E-Commerce-App\Bazar_App\Bazar_App\bin\Debug\net5.0\Azure.Storage.Queues.dll
 C:\Users\HP\Source\Repos\E-Commerce-App\Bazar_App\Bazar_App\bin\Debug\net5.0\Microsoft.Extensions.Azure.dll
+C:\Users\HP\Source\Repos\E-Commerce-App\Bazar_App\Bazar_App\obj\Debug\net5.0\Razor\Pages\Accounts\Index.cshtml.g.cs
+C:\Users\HP\Source\Repos\E-Commerce-App\Bazar_App\Bazar_App\obj\Debug\net5.0\Razor\Pages\Shared\_Layout.cshtml.g.cs
+C:\Users\HP\Source\Repos\E-Commerce-App\Bazar_App\Bazar_App\obj\Debug\net5.0\Razor\Pages\_ViewImports.cshtml.g.cs
+C:\Users\HP\Source\Repos\E-Commerce-App\Bazar_App\Bazar_App\obj\Debug\net5.0\Razor\Pages\_ViewStart.cshtml.g.cs
+C:\Users\HP\Source\Repos\E-Commerce-App\Bazar_App\Bazar_App\obj\Debug\net5.0\Razor\Pages\Index.cshtml.g.cs
+C:\Users\HP\source\repos\E-Commerce-App\Bazar_App\Bazar_App\obj\Debug\net5.0\Razor\Pages\Accounts\Signup.cshtml.g.cs
+C:\Users\HP\source\repos\E-Commerce-App\Bazar_App\Bazar_App\obj\Debug\net5.0\Razor\Pages\Accounts\Logout.cshtml.g.cs
+C:\Users\HP\source\repos\E-Commerce-App\Bazar_App\Bazar_App\obj\Debug\net5.0\Razor\Pages\Products\Index.cshtml.g.cs

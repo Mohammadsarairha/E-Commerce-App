@@ -41,7 +41,7 @@ li.navli a:hover {
 <body>
     <div>
                 <ul class="nav">
-                    <li class="navli">@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li class="navli"><a href="/home/index">Home</a></li>
                     <li class="navli">@Html.ActionLink("Categories", "Index", "Category")</li>
                     <li class="navli">@Html.ActionLink("Products", "Index", "Product")</li>
                     @if (signInManager.IsSignedIn(User))
