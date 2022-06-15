@@ -1,0 +1,30 @@
+/* _content/Bazar_App/Pages/Accounts/Index.cshtml.rz.scp.css */
+input[type=text][b-gt4vzgneuy], select[b-gt4vzgneuy], textarea[b-gt4vzgneuy] {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    resize: vertical;
+}
+
+input[type=submit][b-gt4vzgneuy] {
+    background-color: #04AA6D;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+    input[type=submit]:hover[b-gt4vzgneuy] {
+        background-color: #45a049;
+    }
+
+.container[b-gt4vzgneuy] {
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+}

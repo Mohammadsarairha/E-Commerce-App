@@ -20,9 +20,9 @@ namespace Bazar_App.Data
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<Category>().HasData(
-             new Category { Id = 1, Name = "Beauty" },
-             new Category { Id = 2, Name = "Clothes" },
-             new Category { Id = 3, Name = "Mobiles" }
+             new Category { Id = 1, Name = "Beauty" ,Imgurl= "https://bazartest.blob.core.windows.net/img/BeautyCategory.jpg" },
+             new Category { Id = 2, Name = "Clothes" ,Imgurl= "https://bazartest.blob.core.windows.net/img/ClothesCategorys.jpg" },
+             new Category { Id = 3, Name = "Mobiles" ,Imgurl= "https://bazartest.blob.core.windows.net/img/Mobile-Category.jpg" }
              );
 
             modelBuilder.Entity<Product>().HasData(

@@ -1,0 +1,25 @@
+﻿@page
+@model Bazar_App.Pages.IndexModel
+@{
+}
+<link rel="stylesheet" href="~/css/CardStyle.css" />
+
+
+@foreach (var item in @Model.category)
+{
+<div class="card">
+          <div class="photo">
+            <img src="@item.Imgurl">
+          </div>
+          <div class="description">
+            <h2>@item.Name</h2>
+            <form method="post">
+                <input type="hidden" name="id" value="@item.Id" />
+                <button>Shop Now</button>
+            </form>
+          </div>
+</div>
+}
+
+
+        

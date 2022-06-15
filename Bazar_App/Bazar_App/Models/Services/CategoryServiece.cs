@@ -38,6 +38,7 @@ namespace Bazar_App.Models.Services
             {
                 Id = category.Id,
                 Name = category.Name,
+                Imgurl= category.Imgurl,
                 Products = category.Products.Select(p => new ProductDto
                 {
                     Id = p.Id,
@@ -55,6 +56,7 @@ namespace Bazar_App.Models.Services
             {
                 Id = category.Id,
                 Name = category.Name,
+                Imgurl = category.Imgurl,
                 Products = category.Products.Select(p => new ProductDto
                 {
                     Id = p.Id,

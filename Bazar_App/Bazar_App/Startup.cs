@@ -30,6 +30,7 @@ namespace Bazar_App
         }
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddRazorPages();
             services.AddMvc();
 
             services.AddDbContext<BazaarDBContext>(options => {
@@ -79,8 +80,10 @@ namespace Bazar_App
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapRazorPages();
                 endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}");
             });
+
         }
     }
     internal static class StartupExtensions

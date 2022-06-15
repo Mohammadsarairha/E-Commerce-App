@@ -7,15 +7,16 @@ namespace Bazar_App.Auth.Models.Dto
 {
     public class RegisterDto
     {
-        [Required(ErrorMessage = "You have missed to fill the username")]
+        [Required]
         [Display(Name = "User Name")]
-        [MinLength(3)]
+        [MinLength(3, ErrorMessage = "Minimum length is 3 character")]
         public string UserName { get; set; }
 
         [Required]
         public string Password { get; set; }
 
         [Required]
+        [EmailAddress]
         public string Email { get; set; }
     }
 }

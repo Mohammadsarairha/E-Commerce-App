@@ -49,20 +49,25 @@ namespace Bazar_App.Controllers
 
             if (ModelState.IsValid)
             {
-                return Redirect("/");
+                return Redirect("/home/index");
             }
 
             return View();
         }
         [HttpPost]
-        public async Task<ActionResult<UserDto>> Authenticate(LoginDto login)
+        public async Task<ActionResult<UserDto>> Index(LoginDto login)
         {
-            var user = await _userService.Authenticate(login.UserName, login.Password);
-            if (user == null)
+            if (login.Username != null && login.Password != null)
             {
-                return RedirectToAction("Index");
+                var user = await _userService.Authenticate(login.Username, login.Password);
+                if(user != null)
+                {
+                    return Redirect("/home/index");
+                }
+                ModelState.AddModelError("NotMatch", "Username and Passowrd not match");
+                return View();
             }
-            return Redirect("/");
+            return View();
         }
     }
 }

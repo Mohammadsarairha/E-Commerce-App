@@ -1,0 +1,32 @@
+﻿@page
+@model Bazar_App.Pages.Accounts.IndexModel
+@{
+}
+
+<div class="container">
+  <form class="form" method="post">
+    <br />
+    <br />
+    <label>
+        <span>UserName</span>
+    </label>
+    <br />
+    <input id="input" type="text" asp-for="loginData.Username"/>
+    <span asp-validation-for="loginData.Username" class="text-danger"></span>
+    <br />
+    <br />
+    <label>
+        <span>Password</span>
+    </label>
+    <br />
+    <input id="input" type="password" asp-for="loginData.Password"/>
+    <span asp-validation-for="loginData.Password" class="text-danger"></span>
+    <br />
+    <br />
+    <button id="submit" type="submit">Login</button>
+</form>
+<br />
+<br />
+<span class="text-muted">Not a member?</span>
+<a href="/accounts/signup">Sign up</a>
+</div>
