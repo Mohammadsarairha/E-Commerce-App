@@ -1,5 +1,6 @@
 using Bazar_App.Models.DTO;
 using Bazar_App.Models.Interface;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Collections.Generic;

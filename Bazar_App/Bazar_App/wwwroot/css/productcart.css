@@ -47,8 +47,7 @@ body {
         color: #515151;
         font-weight: 300;
         margin: 0;
-        font-size: 30px;
-        font-weight: 300;
+        font-size: 20px;
     }
 
     .description h2 {
@@ -77,9 +76,10 @@ body {
     .description button {
         outline: 0;
         border: 0;
-        background-color: #aedaa6;
+        background-color: #8EB7EB;
         border: 1px solid #d9d9d9;
         padding: 8px 0px;
+        margin-top: 50px;
         margin-bottom: 30px;
         color: white;
         text-transform: uppercase;
@@ -91,8 +91,8 @@ body {
     }
 
         .description button:hover {
+            border: 1px solid #8EB7EB;
+            background-color: #B8D7FF;
             color: black;
-            border: 1px solid black;
-            background-color: #d6ecd2;
             cursor: pointer;
         }

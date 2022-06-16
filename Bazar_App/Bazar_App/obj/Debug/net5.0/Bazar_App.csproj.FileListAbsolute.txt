@@ -328,3 +328,4 @@ C:\Users\HP\Source\Repos\E-Commerce-App\Bazar_App\Bazar_App\obj\Debug\net5.0\Raz
 C:\Users\HP\source\repos\E-Commerce-App\Bazar_App\Bazar_App\obj\Debug\net5.0\Razor\Pages\Accounts\Signup.cshtml.g.cs
 C:\Users\HP\source\repos\E-Commerce-App\Bazar_App\Bazar_App\obj\Debug\net5.0\Razor\Pages\Accounts\Logout.cshtml.g.cs
 C:\Users\HP\source\repos\E-Commerce-App\Bazar_App\Bazar_App\obj\Debug\net5.0\Razor\Pages\Products\Index.cshtml.g.cs
+C:\Users\HP\source\repos\E-Commerce-App\Bazar_App\Bazar_App\obj\Debug\net5.0\Razor\Pages\Carts\Index.cshtml.g.cs

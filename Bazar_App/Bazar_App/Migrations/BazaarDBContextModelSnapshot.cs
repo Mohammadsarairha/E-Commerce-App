@@ -84,6 +84,47 @@ namespace Bazar_App.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
+            modelBuilder.Entity("Bazar_App.Models.Cart", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<double>("TotalCost")
+                        .HasColumnType("float");
+
+                    b.Property<int>("TotalQuantity")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Carts");
+                });
+
+            modelBuilder.Entity("Bazar_App.Models.CartProduct", b =>
+                {
+                    b.Property<int>("CartId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.HasKey("CartId", "ProductId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("CartProduct");
+                });
+
             modelBuilder.Entity("Bazar_App.Models.Category", b =>
                 {
                     b.Property<int>("Id")
@@ -139,12 +180,14 @@ namespace Bazar_App.Migrations
                     b.Property<string>("ImgUrl")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("InStock")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<double?>("Price")
-                        .IsRequired()
+                    b.Property<double>("Price")
                         .HasColumnType("float");
 
                     b.HasKey("Id");
@@ -160,6 +203,7 @@ namespace Bazar_App.Migrations
                             CategoryId = 1,
                             Description = "Maybelline New York Colossal Bold Liner & Colossal Kajal",
                             ImgUrl = "https://bazartest.blob.core.windows.net/img/Liner.jpg",
+                            InStock = 20,
                             Name = "Liner & Colossal Kajal",
                             Price = 15.5
                         },
@@ -169,6 +213,7 @@ namespace Bazar_App.Migrations
                             CategoryId = 1,
                             Description = "URBANMAC Premium Synthetic Kabuki Foundation Face Powder",
                             ImgUrl = "https://bazartest.blob.core.windows.net/img/Blushes.jpg",
+                            InStock = 22,
                             Name = "Blushes",
                             Price = 20.0
                         },
@@ -178,8 +223,9 @@ namespace Bazar_App.Migrations
                             CategoryId = 1,
                             Description = "Coloressence Full Coverage Waterproof Lightweight",
                             ImgUrl = "https://bazartest.blob.core.windows.net/img/Foundation.jpg",
+                            InStock = 12,
                             Name = "Foundation ",
-                            Price = 50.0
+                            Price = 10.0
                         },
                         new
                         {
@@ -187,6 +233,7 @@ namespace Bazar_App.Migrations
                             CategoryId = 2,
                             Description = "HIKIPO Presents 100% Cotton Born Baby",
                             ImgUrl = "https://bazartest.blob.core.windows.net/img/CottonBornBaby.jpg",
+                            InStock = 5,
                             Name = "Cotton Born Baby",
                             Price = 15.0
                         },
@@ -196,8 +243,9 @@ namespace Bazar_App.Migrations
                             CategoryId = 2,
                             Description = "Babyblossom Baby Kid's Cotton Combo Pack Of 3",
                             ImgUrl = "https://bazartest.blob.core.windows.net/img/Kid'sCottonClothing.jpg",
+                            InStock = 75,
                             Name = "Kid's Cotton Combo Pack Of 3 Clothing Set",
-                            Price = 243.0
+                            Price = 30.0
                         },
                         new
                         {
@@ -205,6 +253,7 @@ namespace Bazar_App.Migrations
                             CategoryId = 2,
                             Description = "Scott International Men's Regular",
                             ImgUrl = "https://bazartest.blob.core.windows.net/img/Men'sT-Shirt.jpg",
+                            InStock = 61,
                             Name = "Men's Regular Fit T-Shirt",
                             Price = 20.0
                         },
@@ -214,6 +263,7 @@ namespace Bazar_App.Migrations
                             CategoryId = 3,
                             Description = "Oppo A54 (Starry Blue, 6GB RAM, 128GB Storage)",
                             ImgUrl = "https://bazartest.blob.core.windows.net/img/OppoA54.png",
+                            InStock = 2,
                             Name = "Oppo A54",
                             Price = 123.0
                         },
@@ -223,6 +273,7 @@ namespace Bazar_App.Migrations
                             CategoryId = 3,
                             Description = "Tecno Spark 8 Pro (Turquoise Cyan, 7GB Expandable RAM 64GB Storage)",
                             ImgUrl = "https://bazartest.blob.core.windows.net/img/TecnoSpark8Pro.png",
+                            InStock = 9,
                             Name = "Tecno Spark 8 Pro",
                             Price = 432.0
                         });
@@ -359,6 +410,34 @@ namespace Bazar_App.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("Bazar_App.Models.Cart", b =>
+                {
+                    b.HasOne("Bazar_App.Auth.Models.ApplicationUser", "ApplicationUser")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("ApplicationUser");
+                });
+
+            modelBuilder.Entity("Bazar_App.Models.CartProduct", b =>
+                {
+                    b.HasOne("Bazar_App.Models.Cart", "Cart")
+                        .WithMany("CartProducts")
+                        .HasForeignKey("CartId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Bazar_App.Models.Product", "Products")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Cart");
+
+                    b.Navigation("Products");
+                });
+
             modelBuilder.Entity("Bazar_App.Models.Product", b =>
                 {
                     b.HasOne("Bazar_App.Models.Category", "Category")
@@ -419,6 +498,11 @@ namespace Bazar_App.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Bazar_App.Models.Cart", b =>
+                {
+                    b.Navigation("CartProducts");
                 });
 
             modelBuilder.Entity("Bazar_App.Models.Category", b =>

@@ -1,23 +1,29 @@
 ﻿@page
-@model Bazar_App.Pages.Products.IndexModel
+@model Bazar_App.Pages.Products.IndexModel;
 @{
 }
-<h2>@Model.Product.Id</h2>
 
 <link rel="stylesheet" href="~/css/productcart.css" />
-<div class="card">
+
+@foreach (var item in Model.Product)
+{
+       <div class="card">
           <div class="photo">
-            <img src="">
+            <img src="@item.ImgUrl">
           </div>
           <div class="description">
-            <h2>Classic Peace Lily</h2>
-            <h4>Popular House Plant</h4>
-            <h1>$18</h1>
-            <p>Classic Peace Lily is a spathiphyllum floor plant arranged in a bamboo planter with a blue & red ribbom
-              and butterfly pick.</p>
+            <h2>@item.Name</h2>
+            <h4>@item.CategoryName</h4>
+            <h1>@item.Price JD</h1>
+            <p>@item.Description</p>
+            <h1>InStock : @item.InStock</h1>
+            <form method="post" >
+            <input type="hidden" name="id" value="@item.Id" />
             <button>Add to Cart</button>
-            <button>Wishlist</button>
+            </form>
           </div>
-        </div>
+        </div>    
+}
+
 
         

@@ -26,7 +26,8 @@ namespace Bazar_App.Models.Services
             CategoryDto categorydto = new CategoryDto
             {
                 Id = category.Id,
-                Name = category.Name
+                Name = category.Name,
+                Imgurl= category.Imgurl
             };
 
             return categorydto;
@@ -45,6 +46,8 @@ namespace Bazar_App.Models.Services
                     Name = p.Name,
                     Price = p.Price,
                     Description = p.Description,
+                    ImgUrl = p.ImgUrl,
+                    InStock = p.InStock,
                     CategoryName = _context.Categories.FirstOrDefault(cat => cat.Id == p.CategoryId).Name
                 }).ToList()
             }).ToListAsync();
@@ -63,6 +66,8 @@ namespace Bazar_App.Models.Services
                     Name = p.Name,
                     Price = p.Price,
                     Description = p.Description,
+                    ImgUrl = p.ImgUrl,
+                    InStock = p.InStock,
                     CategoryName = _context.Categories.FirstOrDefault(cat => cat.Id == p.CategoryId).Name
                 }).ToList()
             }).FirstOrDefaultAsync(a => a.Id == id);

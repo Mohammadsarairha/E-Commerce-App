@@ -16,7 +16,7 @@
                     @if (signInManager.IsSignedIn(User))
                     {
                         <li class="navli">@Html.ActionLink($"Hi {@User.Identity.Name}", "", "")</li>
-                        <li class="navli">@Html.ActionLink("LogOut", "LogOut", "Auth")</li>
+                        <li class="navli"><a href="/Accounts/Logout">Logout</a></li>
                     }else
                     {
                         <li class="navli"><a href="/accounts/signup">Signup</a></li>

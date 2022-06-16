@@ -76,7 +76,7 @@ body {
     .description button {
         outline: 0;
         border: 0;
-        background-color: #aedaa6;
+        background-color: #8EB7EB;
         border: 1px solid #d9d9d9;
         padding: 8px 0px;
         margin-top: 60px;
@@ -90,8 +90,8 @@ body {
     }
 
         .description button:hover {
-            border: 1px solid #aedaa6;
-            background-color:#d6ecd2;
+            border: 1px solid #8EB7EB;
+            background-color: #B8D7FF;
             color: black;
             cursor: pointer;
         }

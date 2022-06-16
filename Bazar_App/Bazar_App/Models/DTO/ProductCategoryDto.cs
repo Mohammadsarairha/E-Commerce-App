@@ -10,10 +10,11 @@ namespace Bazar_App.Models.DTO
         [Required(ErrorMessage = "Name is required")]
         public string Name { get; set; }
         [Required(ErrorMessage = "Price is required")]
-        public double? Price { get; set; }
+        public double Price { get; set; }
         public string Description { get; set; }
         public IFormFile File { get; set; }
         public string ImgUrl { get; set; }
+        public int InStock { get; set; }
         public string CategoryName { get; set; }
 
         public List<Category> Categories { get; set; }

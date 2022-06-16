@@ -46,7 +46,7 @@ namespace Bazar_App
             // Invalid user redirects
             services.ConfigureApplicationCookie(options =>
             {
-                options.LoginPath = new PathString("/Auth/Index");
+                options.LoginPath = new PathString("/Accounts/");
             });
 
             // Alternative to JWT, use the built-in authentication system
@@ -56,6 +56,7 @@ namespace Bazar_App
             services.AddTransient<IProduct, ProductServices>();
             services.AddTransient<ICategory, CategoryServiece>();
             services.AddTransient<IUserService, UserService>();
+            services.AddTransient<ICart, CartService>();
             services.AddAzureClients(builder =>
             {
                 builder.AddBlobServiceClient(Configuration["ConnectionStrings:AzureContainers:blob"], preferMsi: true);

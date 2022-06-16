@@ -34,6 +34,7 @@ namespace Bazar_App.Models.Services
                 Price = product.Price,
                 Description = product.Description,
                 ImgUrl = product.ImgUrl,
+                InStock = product.InStock,
                 CategoryName = _context.Categories.FirstOrDefault(cat => cat.Id == product.CategoryId).Name
             };
 
@@ -49,6 +50,7 @@ namespace Bazar_App.Models.Services
                 Price = X.Price,
                 Description = X.Description,
                 ImgUrl = X.ImgUrl,
+                InStock = X.InStock,
                 CategoryName = _context.Categories.FirstOrDefault(cat => cat.Id == X.CategoryId).Name
             }).FirstOrDefaultAsync(x => x.Id == Id);
         }
@@ -62,6 +64,7 @@ namespace Bazar_App.Models.Services
                 Price = X.Price,
                 Description = X.Description,
                 ImgUrl = X.ImgUrl,
+                InStock=X.InStock,
                 CategoryName = _context.Categories.FirstOrDefault(cat => cat.Id == X.CategoryId).Name
             }).ToListAsync();
         }
@@ -75,6 +78,7 @@ namespace Bazar_App.Models.Services
                 Description = product.Description,
                 Price = product.Price,
                 ImgUrl = product.ImgUrl,
+                InStock = product.InStock,
                 CategoryName = _context.Categories.FirstOrDefault(cat => cat.Id == product.CategoryId).Name
             };
             _context.Entry(product).State = EntityState.Modified;

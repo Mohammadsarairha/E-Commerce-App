@@ -19,7 +19,7 @@ namespace Bazar_App.Pages.Accounts
         {
             await _userService.Logout();
 
-            return RedirectToAction("/");
+            return Redirect("/");
         }
     }
 }
