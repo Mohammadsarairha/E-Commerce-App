@@ -4,6 +4,8 @@
 body {
     margin: 0;
     font-family: "Raleway";
+    background: linear-gradient(to bottom right, #E3F0FF, #FAFCFF);
+    
 }
 input,
 select,
@@ -43,7 +45,7 @@ input[type="checkbox"].input-validation-error {
 }
 
 .nav {
-    background-color: #aedaa6;
+    background-color: #8EB7EB;
 }
 ul.nav {
     list-style-type: none;
@@ -65,29 +67,25 @@ li.navli {
     }
 
         li.navli a:hover {
-            background-color: #d6ecd2;
+            background-color: #B8D7FF;
         }
 
-
-.form {
-    text-align: center
-}
 #input {
     width: 100%;
-    padding: 12px;
+    padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    box-sizing: border-box;
-    margin-top: 6px;
-    margin-bottom: 16px;
+    margin-top: 5px;
+    margin-bottom: 12px;
     resize: vertical;
 }
 
 #submit {
-    background-color: #aedaa6;
+    background-color: #8EB7EB;
     display: block;
     margin-left: auto;
     margin-right: auto;
+    margin-top:15px;
     width: 50%;
     color: white;
     padding: 12px 20px;
@@ -97,33 +95,35 @@ li.navli {
 }
 
     #submit:hover {
-        background-color: #d6ecd2;
+        background-color: #B8D7FF;
     }
 
 .container {
     margin: auto;
-    width: 40%;
+    width: 300px;
     border-radius: 5px;
-    background-color: #f2f2f2;
+    background: linear-gradient(to bottom top, #E3F0FF, #FAFCFF);
     padding: 20px;
     margin-top: 50px;
+    text-align:center;
 }
 
-.no-bullets ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    color: red;
-    font-weight: bold;
-    padding-top: 10px;
-}
+
+    .no-bullets ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        color: red;
+        font-weight: bold;
+        padding-top: 10px;
+    }
 
 .footer {
     position: fixed;
     left: 0;
-    bottom: 0;
+    bottom:0px;
     width: 100%;
-    background-color: #aedaa6;
+    background-color: #8EB7EB;
     color: white;
     text-align: center;
 }

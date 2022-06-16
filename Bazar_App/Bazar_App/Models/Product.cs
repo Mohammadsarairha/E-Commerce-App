@@ -7,11 +7,14 @@ namespace Bazar_App.Models
         [Required]
         public string Name { get; set; }
         [Required]
-        public double? Price { get; set; }
+        public double Price { get; set; }
         public string Description { get; set; }
         public string ImgUrl { get; set; }
+        public int InStock { get; set; }
         public int CategoryId { get; set; }
         //Navigation properties
         public Category Category { get; set; }
+
+        
     }
 }

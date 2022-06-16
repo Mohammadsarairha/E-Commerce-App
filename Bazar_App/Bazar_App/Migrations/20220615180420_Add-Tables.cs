@@ -3,30 +3,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Bazar_App.Migrations
 {
-    public partial class AddIdentity : Migration
+    public partial class AddTables : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AlterColumn<string>(
-                name: "Name",
-                table: "Product",
-                type: "nvarchar(max)",
-                nullable: false,
-                defaultValue: "",
-                oldClrType: typeof(string),
-                oldType: "nvarchar(max)",
-                oldNullable: true);
-
-            migrationBuilder.AlterColumn<string>(
-                name: "Name",
-                table: "Categories",
-                type: "nvarchar(max)",
-                nullable: false,
-                defaultValue: "",
-                oldClrType: typeof(string),
-                oldType: "nvarchar(max)",
-                oldNullable: true);
-
             migrationBuilder.CreateTable(
                 name: "AspNetRoles",
                 columns: table => new
@@ -64,6 +44,20 @@ namespace Bazar_App.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Categories",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Imgurl = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Categories", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -172,61 +166,105 @@ namespace Bazar_App.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.UpdateData(
-                table: "Product",
-                keyColumn: "Id",
-                keyValue: 1,
-                column: "Description",
-                value: "Maybelline New York Colossal Bold Liner & Colossal Kajal");
+            migrationBuilder.CreateTable(
+                name: "Carts",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    TotalCost = table.Column<double>(type: "float", nullable: false),
+                    TotalQuantity = table.Column<int>(type: "int", nullable: false),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Carts", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Carts_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
 
-            migrationBuilder.UpdateData(
-                table: "Product",
-                keyColumn: "Id",
-                keyValue: 2,
-                column: "Description",
-                value: "URBANMAC Premium Synthetic Kabuki Foundation Face Powder");
+            migrationBuilder.CreateTable(
+                name: "Product",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Price = table.Column<double>(type: "float", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ImgUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    InStock = table.Column<int>(type: "int", nullable: false),
+                    CategoryId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Product", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Product_Categories_CategoryId",
+                        column: x => x.CategoryId,
+                        principalTable: "Categories",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
 
-            migrationBuilder.UpdateData(
-                table: "Product",
-                keyColumn: "Id",
-                keyValue: 3,
-                column: "Description",
-                value: "Coloressence Full Coverage Waterproof Lightweight");
+            migrationBuilder.CreateTable(
+                name: "CartProduct",
+                columns: table => new
+                {
+                    CartId = table.Column<int>(type: "int", nullable: false),
+                    ProductId = table.Column<int>(type: "int", nullable: false),
+                    Quantity = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CartProduct", x => new { x.CartId, x.ProductId });
+                    table.ForeignKey(
+                        name: "FK_CartProduct_Carts_CartId",
+                        column: x => x.CartId,
+                        principalTable: "Carts",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_CartProduct_Product_ProductId",
+                        column: x => x.ProductId,
+                        principalTable: "Product",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
 
-            migrationBuilder.UpdateData(
-                table: "Product",
-                keyColumn: "Id",
-                keyValue: 4,
-                column: "Description",
-                value: "HIKIPO Presents 100% Cotton Born Baby");
+            migrationBuilder.InsertData(
+                table: "Categories",
+                columns: new[] { "Id", "Imgurl", "Name" },
+                values: new object[] { 1, "https://bazartest.blob.core.windows.net/img/BeautyCategory.jpg", "Beauty" });
 
-            migrationBuilder.UpdateData(
-                table: "Product",
-                keyColumn: "Id",
-                keyValue: 5,
-                column: "Description",
-                value: "Babyblossom Baby Kid's Cotton Combo Pack Of 3");
+            migrationBuilder.InsertData(
+                table: "Categories",
+                columns: new[] { "Id", "Imgurl", "Name" },
+                values: new object[] { 2, "https://bazartest.blob.core.windows.net/img/ClothesCategorys.jpg", "Clothes" });
 
-            migrationBuilder.UpdateData(
-                table: "Product",
-                keyColumn: "Id",
-                keyValue: 6,
-                column: "Description",
-                value: "Scott International Men's Regular");
+            migrationBuilder.InsertData(
+                table: "Categories",
+                columns: new[] { "Id", "Imgurl", "Name" },
+                values: new object[] { 3, "https://bazartest.blob.core.windows.net/img/Mobile-Category.jpg", "Mobiles" });
 
-            migrationBuilder.UpdateData(
+            migrationBuilder.InsertData(
                 table: "Product",
-                keyColumn: "Id",
-                keyValue: 7,
-                column: "Description",
-                value: "Oppo A54 (Starry Blue, 6GB RAM, 128GB Storage)");
-
-            migrationBuilder.UpdateData(
-                table: "Product",
-                keyColumn: "Id",
-                keyValue: 8,
-                column: "Description",
-                value: "Tecno Spark 8 Pro (Turquoise Cyan, 7GB Expandable RAM 64GB Storage)");
+                columns: new[] { "Id", "CategoryId", "Description", "ImgUrl", "InStock", "Name", "Price" },
+                values: new object[,]
+                {
+                    { 1, 1, "Maybelline New York Colossal Bold Liner & Colossal Kajal", "https://bazartest.blob.core.windows.net/img/Liner.jpg", 20, "Liner & Colossal Kajal", 15.5 },
+                    { 2, 1, "URBANMAC Premium Synthetic Kabuki Foundation Face Powder", "https://bazartest.blob.core.windows.net/img/Blushes.jpg", 22, "Blushes", 20.0 },
+                    { 3, 1, "Coloressence Full Coverage Waterproof Lightweight", "https://bazartest.blob.core.windows.net/img/Foundation.jpg", 12, "Foundation ", 10.0 },
+                    { 4, 2, "HIKIPO Presents 100% Cotton Born Baby", "https://bazartest.blob.core.windows.net/img/CottonBornBaby.jpg", 5, "Cotton Born Baby", 15.0 },
+                    { 5, 2, "Babyblossom Baby Kid's Cotton Combo Pack Of 3", "https://bazartest.blob.core.windows.net/img/Kid'sCottonClothing.jpg", 75, "Kid's Cotton Combo Pack Of 3 Clothing Set", 30.0 },
+                    { 6, 2, "Scott International Men's Regular", "https://bazartest.blob.core.windows.net/img/Men'sT-Shirt.jpg", 61, "Men's Regular Fit T-Shirt", 20.0 },
+                    { 7, 3, "Oppo A54 (Starry Blue, 6GB RAM, 128GB Storage)", "https://bazartest.blob.core.windows.net/img/OppoA54.png", 2, "Oppo A54", 123.0 },
+                    { 8, 3, "Tecno Spark 8 Pro (Turquoise Cyan, 7GB Expandable RAM 64GB Storage)", "https://bazartest.blob.core.windows.net/img/TecnoSpark8Pro.png", 9, "Tecno Spark 8 Pro", 432.0 }
+                });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -266,6 +304,21 @@ namespace Bazar_App.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CartProduct_ProductId",
+                table: "CartProduct",
+                column: "ProductId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Carts_UserId",
+                table: "Carts",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Product_CategoryId",
+                table: "Product",
+                column: "CategoryId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -286,82 +339,22 @@ namespace Bazar_App.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "CartProduct");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoles");
+
+            migrationBuilder.DropTable(
+                name: "Carts");
+
+            migrationBuilder.DropTable(
+                name: "Product");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
 
-            migrationBuilder.AlterColumn<string>(
-                name: "Name",
-                table: "Product",
-                type: "nvarchar(max)",
-                nullable: true,
-                oldClrType: typeof(string),
-                oldType: "nvarchar(max)");
-
-            migrationBuilder.AlterColumn<string>(
-                name: "Name",
-                table: "Categories",
-                type: "nvarchar(max)",
-                nullable: true,
-                oldClrType: typeof(string),
-                oldType: "nvarchar(max)");
-
-            migrationBuilder.UpdateData(
-                table: "Product",
-                keyColumn: "Id",
-                keyValue: 1,
-                column: "Description",
-                value: "Maybelline New York Colossal Bold Liner & Colossal Kajal - EYE KIT COMBO (Pack Of 2), 0.35 gm + 3 ml");
-
-            migrationBuilder.UpdateData(
-                table: "Product",
-                keyColumn: "Id",
-                keyValue: 2,
-                column: "Description",
-                value: "URBANMAC Premium Synthetic Kabuki Foundation Face Powder Blush Eyeshadow Brush Makeup Brush Kit with Blender Sponge and Brush Cleaner - Makeup Brushes Set");
-
-            migrationBuilder.UpdateData(
-                table: "Product",
-                keyColumn: "Id",
-                keyValue: 3,
-                column: "Description",
-                value: "Coloressence Full Coverage Waterproof Lightweight Matte Formula Opaque Lotion High Definition Foundation (HDF-2) with Set of 2 Blending Sponge");
-
-            migrationBuilder.UpdateData(
-                table: "Product",
-                keyColumn: "Id",
-                keyValue: 4,
-                column: "Description",
-                value: "HIKIPO Presents 100% Cotton Born Baby Summer Wear Baby Clothes Sets For Gift");
-
-            migrationBuilder.UpdateData(
-                table: "Product",
-                keyColumn: "Id",
-                keyValue: 5,
-                column: "Description",
-                value: "Babyblossom Baby Kid's Cotton Combo Pack Of 3 Clothing Set ( 3 Top And 3 Bottom) (1112,Multicolor,0-3 Months)");
-
-            migrationBuilder.UpdateData(
-                table: "Product",
-                keyColumn: "Id",
-                keyValue: 6,
-                column: "Description",
-                value: "Scott International Men's Regular Fit T-Shirt (Pack of 3)");
-
-            migrationBuilder.UpdateData(
-                table: "Product",
-                keyColumn: "Id",
-                keyValue: 7,
-                column: "Description",
-                value: "Oppo A54 (Starry Blue, 6GB RAM, 128GB Storage) with No Cost EMI & Additional Exchange Offers");
-
-            migrationBuilder.UpdateData(
-                table: "Product",
-                keyColumn: "Id",
-                keyValue: 8,
-                column: "Description",
-                value: "Tecno Spark 8 Pro (Turquoise Cyan, 7GB Expandable RAM 64GB Storage) 33W Fast Charger | Helio G85 Gaming Processor");
+            migrationBuilder.DropTable(
+                name: "Categories");
         }
     }
 }
