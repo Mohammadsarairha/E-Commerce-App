@@ -61,15 +61,33 @@ li.navli {
     li.navli a {
         display: block;
         color: white;
-        text-align: center;
         padding: 14px 16px;
         text-decoration: none;
     }
-
-        li.navli a:hover {
+    li.navli a:hover {
             background-color: #B8D7FF;
-        }
 
+    }
+
+#logo {
+    display: block;
+    color: white;
+    padding: 14px 16px;
+    text-decoration: none;
+    content:auto;
+}
+
+    #logo:hover {
+            background-color: #B8D7FF;
+    }
+
+#fa-cart {
+    font-size:24px;
+    float:right;
+    color:red;
+    margin-right:20px;
+    margin-top:10px;
+}
 #input {
     width: 100%;
     padding: 10px;
@@ -118,11 +136,21 @@ li.navli {
         padding-top: 10px;
     }
 
-.footer {
-    position: fixed;
-    left: 0;
-    bottom:0px;
+#page-container {
+    position: relative;
+    min-height: 100vh;
+}
+
+#content-wrap {
+    /* Footer height */
+    padding-bottom: 2.5rem;
+}
+
+#footer {
+    position: absolute;
+    bottom: 0;
     width: 100%;
+    height: 3rem; /* Footer height */
     background-color: #8EB7EB;
     color: white;
     text-align: center;
