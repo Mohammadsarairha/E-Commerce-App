@@ -9,5 +9,6 @@
         public string CategoryName { get; set; }
         public int InStock { get; set; }
         public string ImgUrl { get; set; }
+        public int Quantity { get; set; }
     }
 }

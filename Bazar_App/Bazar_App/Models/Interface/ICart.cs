@@ -14,6 +14,7 @@ namespace Bazar_App.Models.Interface
         Task<CartDto> GetUserCart(string userId);
         Task AddProductToCart(int cartId, int productId);
         Task RemoveProductFromCart(int cartId, int productId);
-
+        Task RemoveCartProduct(int cartId, int productId);
+        int GetProductQuantity(int cartId, int productId);
     }
 }
