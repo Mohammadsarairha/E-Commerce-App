@@ -67,6 +67,8 @@ namespace Bazar_App.Models.Services
 
         public async  Task<CartDto> GetCart(int id)
         {
+            Cart cartdata = await _context.Carts.FindAsync(id);
+
             CartDto cart = await _context.Carts.Select(cart => new CartDto
             {
                 Id = cart.Id,
@@ -84,32 +86,13 @@ namespace Bazar_App.Models.Services
                 }).ToList()
             }).FirstOrDefaultAsync(c => c.Id == id);
 
-            Cart cartTotal = await _context.Carts.Where(x => x.Id == cart.Id ).FirstAsync();
+            cart.TotalCost = ReturnTotalCost(cart);
+            cart.TotalQuantity = GetProductQuantity(cart);
 
-            cartTotal.TotalCost = ReturnTotalCost(cart);
-
-            cartTotal.TotalQuantity = GetProductQuantity(cart);
+            cartdata.TotalCost = cart.TotalCost;
+            cartdata.TotalQuantity = cart.TotalQuantity;
 
             await _context.SaveChangesAsync();
-
-            cart = await _context.Carts.Select(cart => new CartDto
-            {
-                Id = cart.Id,
-                TotalCost = cart.TotalCost,
-                TotalQuantity = cart.TotalQuantity,
-                UserId = cart.UserId,
-                Products = cart.CartProducts.Select(cp => new ProductDto
-                {
-                    Id = cp.Products.Id,
-                    Name = cp.Products.Name,
-                    Price = cp.Products.Price,
-                    Description = cp.Products.Description,
-                    ImgUrl = cp.Products.ImgUrl,
-                    CategoryName = _context.Categories.FirstOrDefault(cat => cat.Id == cp.Products.CategoryId).Name
-                }).ToList()
-            }).FirstOrDefaultAsync(c => c.Id == id);
-
-
 
             return cart;
         }
@@ -121,15 +104,8 @@ namespace Bazar_App.Models.Services
             {
                 return null;
             }
-            CartDto cartDto = new CartDto
-            {
-                Id = userCart.Id,
-                TotalCost = userCart.TotalCost,
-                TotalQuantity = userCart.TotalQuantity,
-                UserId = userId
-            };
-
-            return cartDto;
+            CartDto cartDto = await GetCart(userCart.Id);
+            return cartDto ;
         }
 
         public async Task<CartDto> UpdateCart(int id, Cart cart)
@@ -149,6 +125,13 @@ namespace Bazar_App.Models.Services
 
         public async Task Delete(int id)
         {
+            List<CartProduct> cartProducts = await _context.CartProduct.Where(cp => cp.CartId == id).ToListAsync();
+            Product productStock;
+            foreach (var item in cartProducts)
+            {
+                productStock = await _context.Product.FindAsync(item.ProductId);
+                productStock.InStock += item.Quantity;
+            }
             Cart cart = await _context.Carts.FindAsync(id);
             _context.Entry(cart).State = EntityState.Deleted;
             await _context.SaveChangesAsync();
@@ -167,7 +150,7 @@ namespace Bazar_App.Models.Services
                         cartProduct.Quantity += 1;
                         productStock.InStock -= 1;
                         await _context.SaveChangesAsync();
-                    }
+                }
                     else
                     {
                         CartProduct cartProduct = new CartProduct()
@@ -180,14 +163,11 @@ namespace Bazar_App.Models.Services
                         productStock.InStock -= 1;
                         _context.Entry(cartProduct).State = EntityState.Added;
                         await _context.SaveChangesAsync();
-                    }
                 }
+            }
         }
         public async Task RemoveProductFromCart(int cartId, int productId)
         {
-            var existsCartProduct = _context.CartProduct.Any(cp => cp.ProductId == productId && cp.CartId == cartId);
-            if (existsCartProduct)
-            {
                 CartProduct removeProduct = await _context.CartProduct.Where(x => x.ProductId == productId && x.CartId == cartId).FirstAsync();
                 Product productStock = await _context.Product.FindAsync(productId);
                 if (removeProduct.Quantity > 1)
@@ -202,7 +182,20 @@ namespace Bazar_App.Models.Services
                     _context.Entry(removeProduct).State = EntityState.Deleted;
                     await _context.SaveChangesAsync();
                 }
-            }
+        }
+        public async Task RemoveCartProduct(int cartId, int productId)
+        {
+            CartProduct removeProduct = await _context.CartProduct.Where(x => x.ProductId == productId && x.CartId == cartId).FirstAsync();
+            Product productStock = await _context.Product.FindAsync(productId);
+            productStock.InStock += removeProduct.Quantity;
+            _context.Entry(removeProduct).State = EntityState.Deleted;
+            await _context.SaveChangesAsync();
+        }
+
+        public int GetProductQuantity(int cartId , int productId)
+        {
+            int ProductQuantity =  _context.CartProduct.FirstOrDefault(c => c.CartId == cartId && c.ProductId == productId).Quantity;
+            return ProductQuantity;
         }
 
         private double ReturnTotalCost(CartDto cart)

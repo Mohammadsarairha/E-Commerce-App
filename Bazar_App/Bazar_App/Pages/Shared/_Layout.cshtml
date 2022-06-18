@@ -7,13 +7,14 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
+    <link href='https://css.gg/shopping-cart.css' rel='stylesheet'>
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
     <div>
                <ul class="nav">
-                    <li class="navli"><a id="logo" href="#default">CompanyLogo</a></li>
+                    <li class="navli"><a id="logo" href="#default">BAZAR</a></li>
                     <li class="navli"><a href="/">Home</a></li>
                     @if (signInManager.IsSignedIn(User))
                     {
@@ -24,6 +25,8 @@
                         <li class="navli"><a href="/accounts/signup">Signup</a></li>
                         <li class="navli"><a href="/accounts">Login</a></li>
                     }
+                    @await Component.InvokeAsync("CartCount")
+                    <li><a id="cart" class="fa fa-shopping-cart" href="/Carts/"></a></li>
                 </ul>
      </div>
     <div id="page-container">

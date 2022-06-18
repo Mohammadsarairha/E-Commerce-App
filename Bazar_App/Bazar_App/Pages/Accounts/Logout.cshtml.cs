@@ -18,6 +18,7 @@ namespace Bazar_App.Pages.Accounts
         public async Task<IActionResult> OnGet()
         {
             await _userService.Logout();
+            Response.Cookies.Delete("count");
 
             return Redirect("/");
         }
