@@ -46,7 +46,6 @@ li.navli a:hover {
                     <li class="navli">@Html.ActionLink("Products", "Index", "Product")</li>
                     @if (signInManager.IsSignedIn(User))
                     {
-                        <li class="navli">@Html.ActionLink($"Hi {@User.Identity.Name}", "", "")</li>
                         <li class="navli">@Html.ActionLink("LogOut", "LogOut", "Auth")</li>
                     }else
                     {
