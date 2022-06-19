@@ -2,7 +2,7 @@
     margin: 0;
     padding: 0;
     background: linear-gradient(to bottom right, #E3F0FF, #FAFCFF);
-    height: 80vh;
+    height: 90vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -17,7 +17,6 @@
     box-shadow: 0px 10px 20px #1687d933;
     overflow: auto;
 }
-
 .Header {
     margin: auto;
     width: 90%;
@@ -35,12 +34,15 @@
 }
 
 .Action {
-    font-size: 14px;
+    font-size: 18px;
     font-family: 'Open Sans';
     font-weight: 600;
     color: #E44C4C;
     cursor: pointer;
-    border-bottom: 1px solid #E44C4C;
+    text-decoration: none;
+    padding: 0;
+    border: none;
+    background: none;
 }
 
 .Cart-Items {
@@ -64,7 +66,7 @@
 
 .title {
     padding-top: 10px;
-    font-size: 28px;
+    font-size: 22px;
     font-family: 'Open Sans';
     font-weight: 800;
     color: #202020;
@@ -89,6 +91,7 @@
     width: 40px;
     height: 40px;
     border-radius: 50%;
+    border:none;
     background-color: #d9d9d9;
     display: flex;
     justify-content: center;
@@ -138,7 +141,7 @@
 }
 
 .amount {
-    padding-top: 20px;
+    padding-top: 50px;
     font-size: 26px;
     font-family: 'Open Sans';
     font-weight: 800;
@@ -155,12 +158,16 @@
 }
 
 .remove {
-    padding-top: 5px;
+    padding-top: 10px;
     font-size: 14px;
     font-family: 'Open Sans';
     font-weight: 600;
+    text-decoration: none;
     color: #E44C4C;
     cursor: pointer;
+    padding: 0;
+    border: none;
+    background: none;
 }
 
 .pad {
@@ -201,7 +208,7 @@ hr {
 }
 
 .total-amount {
-    font-size: 36px;
+    font-size: 30px;
     font-family: 'Open Sans';
     font-weight: 900;
     color: #202020;
@@ -220,4 +227,19 @@ hr {
     font-weight: 600;
     color: #202020;
     margin-bottom: 20px;
+}
+#emptycart {
+    height: 100%;
+    overflow-y: hidden; 
+    overflow-x: hidden; 
+    overflow:hidden;
+    margin-left: 20%;
+}
+.CartContainerempty {
+    width: 70%;
+    height: 90%;
+    background-color: #f8f8f8;
+    border-radius: 20px;
+    box-shadow: 0px 10px 20px #1687d933;
+    overflow: hidden;
 }

@@ -2,7 +2,6 @@ using Bazar_App.Auth.Interfaces;
 using Bazar_App.Auth.Models.Dto;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
 
 namespace Bazar_App.Pages.Accounts
