@@ -31,10 +31,17 @@ namespace Bazar_App.Auth.Services
 
             if (result.Succeeded)
             {
-                return new UserDto
+                IList<string> Roles = new List<string>();
+                Roles.Add("User");
+                await _userManager.AddToRolesAsync(user, Roles);
+
+                UserDto userDto = new UserDto
                 {
+                    Id = user.Id,
                     Username = user.UserName,
+                    Roles = await _userManager.GetRolesAsync(user)
                 };
+                return userDto;
             }
             foreach (var error in result.Errors)
             {

@@ -1,10 +1,12 @@
 ﻿using Bazar_App.Auth.Interfaces;
 using Bazar_App.Auth.Models.Dto;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
 namespace Bazar_App.Controllers
 {
+    [Authorize(Roles = "Administrator,Editor")]
     public class AuthController : Controller
     {
         private readonly IUserService _userService;

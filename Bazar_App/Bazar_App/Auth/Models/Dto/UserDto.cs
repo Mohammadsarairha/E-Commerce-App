@@ -8,7 +8,8 @@ namespace Bazar_App.Auth.Models.Dto
     // We did not use this in the demo
     public class UserDto
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
         public string Username { get; set; }
+        public IList<string> Roles { get; set; }
     }
 }

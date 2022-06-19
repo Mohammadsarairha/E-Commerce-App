@@ -47,6 +47,7 @@ namespace Bazar_App
             services.ConfigureApplicationCookie(options =>
             {
                 options.LoginPath = new PathString("/Accounts/");
+                options.AccessDeniedPath = new PathString("/");
             });
 
             // Alternative to JWT, use the built-in authentication system

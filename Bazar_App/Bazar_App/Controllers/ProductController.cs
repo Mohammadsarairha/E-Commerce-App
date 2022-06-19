@@ -21,21 +21,22 @@ namespace Bazar_App.Controllers
         {
             _prouduct = prouduct;
         }
-
+        [Authorize(Roles = "Administrator,Editor")]
         public async Task<ActionResult<ProductDto>> Index()
         {
             List<ProductDto> products = await _prouduct.GetProducts();
 
             return View(products);
         }
-
+        [Authorize(Roles = "Administrator,Editor")]
         public async Task<ActionResult<ProductDto>> Details(int id)
         {
             ProductDto product = await _prouduct.GetProduct(id);
 
             return View(product);
         }
-        [Authorize]
+
+        [Authorize(Roles = "Administrator")]
         public async Task<ActionResult> Create()
         {
             ProductCategoryDto categoryDto = new ProductCategoryDto
@@ -46,6 +47,7 @@ namespace Bazar_App.Controllers
             return View(categoryDto);
         }
 
+        [Authorize(Roles = "Administrator")]
         [HttpPost]
         public async Task<ActionResult> Create(ProductCategoryDto newProduct)
         {
@@ -79,7 +81,7 @@ namespace Bazar_App.Controllers
             }
             return View(newProduct);
         }
-        [Authorize]
+        [Authorize(Roles = "Editor")]
         public async Task<ActionResult> Edit(int id)
         {
             ProductDto productDto = await _prouduct.GetProduct(id);
@@ -97,6 +99,7 @@ namespace Bazar_App.Controllers
             return View(product);
         }
 
+        [Authorize(Roles = "Editor")]
         [HttpPost]
         public async Task<ActionResult> Edit(ProductCategoryDto product)
         {
@@ -125,7 +128,7 @@ namespace Bazar_App.Controllers
 
             return View(product);
         }
-        [Authorize]
+        [Authorize(Roles = "Administrator")]
         public async Task<ActionResult> Delete(int id)
         {
             await _prouduct.Delete(id);

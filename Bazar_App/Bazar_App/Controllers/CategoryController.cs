@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 
 namespace Bazar_App.Controllers
 {
-    
     public class CategoryController : Controller
     {
         private readonly ICategory _category;
@@ -17,27 +16,27 @@ namespace Bazar_App.Controllers
         {
             _category = category;
         }
-
-
+        [Authorize(Roles = "Administrator,Editor")]
         public async Task<ActionResult<CategoryDto>> Index()
         {
             List<CategoryDto> categories = await _category.GetCategories();
 
             return View(categories);
         }
-
+        [Authorize(Roles = "Administrator,Editor")]
         public async Task<ActionResult<CategoryDto>> Details(int id)
         {
             CategoryDto category = await _category.GetCategory(id);
 
             return View(category);
         }
-        [Authorize]
+        [Authorize(Roles = "Administrator")]
         public IActionResult Create()
         {
             return View();
         }
-        
+
+        [Authorize(Roles = "Administrator")]
         [HttpPost]
         public async Task<ActionResult> Create(Category category)
         {
@@ -49,7 +48,7 @@ namespace Bazar_App.Controllers
 
             return View(category);
         }
-        [Authorize]
+        [Authorize(Roles = "Editor")]
         public async Task<ActionResult<Category>> Edit(int id)
         {
             CategoryDto categoryDto = await _category.GetCategory(id);
@@ -62,7 +61,7 @@ namespace Bazar_App.Controllers
 
             return View(category);
         }
-
+        [Authorize(Roles = "Editor")]
         [HttpPost]
         public async Task<ActionResult> Edit(Category category)
         {
@@ -75,7 +74,7 @@ namespace Bazar_App.Controllers
 
             return View(category);
         }
-        [Authorize]
+        [Authorize(Roles = "Administrator")]
         public async Task<ActionResult> Delete(int id)
         {
             await _category.Delete(id);

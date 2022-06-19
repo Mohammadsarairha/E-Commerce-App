@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore;
 using Bazar_App.Models.DTO;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Bazar_App.Auth.Models;
+using Microsoft.AspNetCore.Identity;
+using System;
 
 namespace Bazar_App.Data
 {
@@ -41,6 +43,21 @@ namespace Bazar_App.Data
             modelBuilder.Entity<CartProduct>().HasKey(
             CartProduct => new { CartProduct.CartId, CartProduct.ProductId }
             );
+
+            SeedRoles(modelBuilder, "Administrator");
+            SeedRoles(modelBuilder, "Editor");
+            SeedRoles(modelBuilder, "User");
+        }
+        private void SeedRoles(ModelBuilder modelBuilder, string roleName)
+        {
+            var role = new IdentityRole
+            {
+                Id = roleName.ToLower(),
+                Name = roleName,
+                NormalizedName = roleName.ToUpper(),
+                ConcurrencyStamp = Guid.Empty.ToString()
+            };
+            modelBuilder.Entity<IdentityRole>().HasData(role);
         }
     }
 }
