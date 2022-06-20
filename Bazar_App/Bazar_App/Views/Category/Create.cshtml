@@ -1,9 +1,9 @@
 ﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
-@model Bazar_App.Models.Category
+@model Bazar_App.Models.DTO.CategoryDto
 
 <h3>Add a new category</h3>
 
-<form asp-controller="Category" asp-action="Create" method="post">
+<form asp-controller="Category" asp-action="Create" method="post" enctype="multipart/form-data">
     <partial name="_CategoryFields"></partial>
 
     <button type="submit">

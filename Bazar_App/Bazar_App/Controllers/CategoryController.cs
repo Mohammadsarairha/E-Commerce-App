@@ -2,6 +2,7 @@
 using Bazar_App.Models.DTO;
 using Bazar_App.Models.Interface;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -11,10 +12,12 @@ namespace Bazar_App.Controllers
     public class CategoryController : Controller
     {
         private readonly ICategory _category;
+        private readonly IProduct _product;
 
-        public CategoryController(ICategory category)
+        public CategoryController(ICategory category, IProduct product)
         {
             _category = category;
+            _product = product;
         }
         [Authorize(Roles = "Administrator,Editor")]
         public async Task<ActionResult<CategoryDto>> Index()
@@ -38,11 +41,21 @@ namespace Bazar_App.Controllers
 
         [Authorize(Roles = "Administrator")]
         [HttpPost]
-        public async Task<ActionResult> Create(Category category)
+        public async Task<ActionResult> Create(CategoryDto category)
         {
+            if (category.File != null)
+            {
+                category.Imgurl = await _product.Uplode(category.File);
+            }
             if (ModelState.IsValid)
             {
-                await _category.Create(category);
+                Category newCategory = new Category
+                {
+                    Name= category.Name,
+                    Imgurl = category.Imgurl
+                };
+
+                await _category.Create(newCategory);
                 return RedirectToAction("Index");
             }
 

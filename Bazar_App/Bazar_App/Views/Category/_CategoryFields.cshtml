@@ -1,5 +1,5 @@
 ﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
-@model Bazar_App.Models.Category
+@model Bazar_App.Models.DTO.CategoryDto
 
     <label>
         <span>Name</span>
@@ -7,5 +7,12 @@
     <br />
     <input asp-for="@Model.Name"/>
     @Html.ValidationMessageFor(x => x.Name)
+    <br />
+    <br />
+    <label>
+        <span>Photo</span>
+    </label>
+    <br />
+    <input asp-for="@Model.File"/>
     <br />
     <br />

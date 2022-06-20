@@ -81,7 +81,8 @@ namespace Bazar_App.Models.Services
             CategoryDto categoryDto = new CategoryDto
             {
                 Id = category.Id,
-                Name = category.Name
+                Name = category.Name,
+                Imgurl = category.Imgurl
             };
 
             return categoryDto;
