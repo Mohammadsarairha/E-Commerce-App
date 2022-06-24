@@ -14,12 +14,10 @@ namespace Bazar_App.Pages.Products
     
     public class IndexModel : PageModel
     {
-        private readonly IProduct _prouduct;
         private readonly ICategory _category;
         private readonly ICart _cart;
-        public IndexModel(IProduct prouduct, ICategory category,ICart cart)
+        public IndexModel(ICategory category,ICart cart)
         {
-            _prouduct = prouduct;
             _category = category;
             _cart = cart;
         }
@@ -28,7 +26,6 @@ namespace Bazar_App.Pages.Products
         public List<ProductDto> Product { get; set; }
 
         public int CartId { get; set; }
-
         public async Task OnGet(int id)
         {
             CategoryDto category = await _category.GetCategory(id);
@@ -39,16 +36,21 @@ namespace Bazar_App.Pages.Products
         public async Task<IActionResult> OnPost(int id , int cartId)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            CartDto cartData = await _cart.GetUserCart(userId);
+            CartDto cartData = null;
+            if (_cart.GetCartByUserId(userId, 0))
+            {
+                cartData = await _cart.GetUserCart(userId, 0);
+            }
+            
             if (cartData == null)
             {
                 Cart newCart = new Cart
                 {
                     TotalCost = 0,
                     TotalQuantity = 0,
-                    UserId = userId
+                    UserId = userId,
+                    State = 0
                 };
-
                 cartData = await _cart.Create(newCart);
                 await _cart.AddProductToCart(cartData.Id, id);
             }
@@ -56,9 +58,12 @@ namespace Bazar_App.Pages.Products
             {
                 await _cart.AddProductToCart(cartData.Id, id);
             }
-            CookieOptions cookieOptions = new CookieOptions();
-            HttpContext.Response.Cookies.Append("count", cartData.TotalQuantity.ToString(), cookieOptions);
-            return Redirect($"/Products?id={cartId}");
+            if (cartData != null)
+            {
+                HttpContext.Response.Cookies.Append("count", cartData.TotalQuantity.ToString());
+            }
+
+            return Redirect($"/Products/{cartId}");
         }
     }
 }

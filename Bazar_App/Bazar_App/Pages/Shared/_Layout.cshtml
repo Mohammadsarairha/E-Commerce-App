@@ -10,32 +10,34 @@
     <link href='https://css.gg/shopping-cart.css' rel='stylesheet'>
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 </head>
 <body>
     <div>
                <ul class="nav">
-                    <li class="navli"><a id="logo" href="#default">BAZAR</a></li>
+                    <li class="navli"><a id="logo" href="/">BAZAAR</a></li>
                     <li class="navli"><a href="/">Home</a></li>
+                    <li class="navli"><a href="/contacts">Contact Us</a></li>
                     @if (signInManager.IsSignedIn(User))
                     {
-                        <li class="navli">@Html.ActionLink($"Hi {@User.Identity.Name}", "", "")</li>
-                        <li class="navli"><a href="/Accounts/Logout">Logout</a></li>
+                        <li class="navli"><a id="username" href="#">Hi @User.Identity.Name</a></li>
+                        <li class="navli"><a id="logout" href="/Accounts/Logout">Logout</a></li>
                     }else
                     {
-                        <li class="navli"><a href="/accounts/signup">Signup</a></li>
-                        <li class="navli"><a href="/accounts">Login</a></li>
+                        <li class="navli"><a id="signup" href="/accounts/signup">Sign Up</a></li>
+                        <li class="navli"><a id="login" href="/accounts">Log In</a></li>
                     }
-                    @await Component.InvokeAsync("CartCount")
-                    <li><a id="cart" class="fa fa-shopping-cart" href="/Carts/"></a></li>
+                    @if (signInManager.IsSignedIn(User)){
+                        @await Component.InvokeAsync("CartCount")
+                        <li><a id="cart" class="fa fa-shopping-cart" href="/Carts/"></a></li>
+                    }
                 </ul>
      </div>
-    <div id="page-container">
-        <div id="content-wrap">
+    <div>
+        <div>
         @RenderBody()
         </div>
-        <footer id="footer">
-            <p>&copy; @DateTime.Now.Year - copyright Bazar Store</p>
-        </footer>
+        <partial name="Footer"></partial>
     </div>
 </body>
 </html>

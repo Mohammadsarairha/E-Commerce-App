@@ -1,4 +1,4 @@
-﻿@page
+﻿@page "{id}"
 @model Bazar_App.Pages.Products.IndexModel;
 @using Bazar_App.Auth.Models
 @using Microsoft.AspNetCore.Identity
@@ -7,9 +7,9 @@
 }
 
 <link rel="stylesheet" href="~/css/productcart.css"/>
-
 @foreach (var item in Model.Product)
 {
+    
        <div class="card">
           <div class="photo">
             <img src="@item.ImgUrl">

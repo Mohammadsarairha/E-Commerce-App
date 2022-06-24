@@ -1,0 +1,48 @@
+﻿@page
+@model Bazar_App.Pages.Checkouts.IndexModel
+@{
+@using Bazar_App.Auth.Models
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+}
+@{
+     var user = await UserManager.GetUserAsync(User);
+}
+<link rel="stylesheet" href="~/css/checkout.css" />
+@if(Model.userCart != null && Model.checkout == null){
+    <div class="container-checkout">
+      <form method="post">
+            <h3>Billing Address</h3>
+            <label asp-for="@Model.checkout.Name"><i class="fa fa-user"></i> Full Name</label>
+            <input asp-for="@Model.checkout.Name" value="@user.UserName" >
+            <span asp-validation-for="checkout.Name" class="text-danger"></span>
+            <label asp-for="@Model.checkout.Email"><i class="fa fa-envelope"></i> Email</label>
+            <input asp-for="@Model.checkout.Email" value="@user.Email">
+            <span asp-validation-for="checkout.Email" class="text-danger"></span>
+            <label asp-for="@Model.checkout.Phone"><i class="fa fa-phone"></i> Phone</label>
+            <input asp-for="@Model.checkout.Phone" placeholder="+00962">
+            <span asp-validation-for="checkout.Phone" class="text-danger"></span>
+            <label asp-for="@Model.checkout.Address"><i class="fa fa-address-card-o"></i> Address</label>
+            <input asp-for="@Model.checkout.Address" placeholder="542 W. 15th Street">
+            <span asp-validation-for="checkout.Address" class="text-danger"></span>
+            <label asp-for="@Model.checkout.City" ><i class="fa fa-institution"></i> City</label>
+            <input asp-for="@Model.checkout.City" placeholder="Jordan">
+            <span asp-validation-for="checkout.City" class="text-danger"></span>
+                <label asp-for="@Model.checkout.State">State</label>
+                <input asp-for="@Model.checkout.State" placeholder="Amman">
+                <span asp-validation-for="checkout.State" class="text-danger"></span>
+                <label asp-for="@Model.checkout.Zip">Zip</label>
+                <input asp-for="@Model.checkout.Zip" placeholder="10001">
+                <span  asp-validation-for="checkout.Zip"  class="text-danger"></span>
+                <br />
+        <input type="submit" value="Continue to checkout" class="btn">
+      </form>
+    </div>
+}
+else if(Model.checkout != null)
+{
+    Response.Redirect($"/Invoices");
+}else if(Model.userCart == null){
+    Response.Redirect("/carts");
+}
