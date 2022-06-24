@@ -9,7 +9,7 @@ namespace Bazar_App.Models
         public int Id { get; set; }
         public double TotalCost { get; set; }
         public int TotalQuantity { get; set; }
-
+        public int State { get; set; }
         //ForeignKey
         public ApplicationUser ApplicationUser { get; set; }
         [ForeignKey("ApplicationUser")]

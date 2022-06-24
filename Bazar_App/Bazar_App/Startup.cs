@@ -32,7 +32,7 @@ namespace Bazar_App
         {
             services.AddRazorPages();
             services.AddMvc();
-
+            
             services.AddDbContext<BazaarDBContext>(options => {
                 string connectionString = Configuration.GetConnectionString("DefaultConnection");
                 options.UseSqlServer(connectionString);
@@ -53,11 +53,13 @@ namespace Bazar_App
             // Alternative to JWT, use the built-in authentication system
             services.AddAuthentication();
             services.AddAuthorization();
-
             services.AddTransient<IProduct, ProductServices>();
             services.AddTransient<ICategory, CategoryServiece>();
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<ICart, CartService>();
+            services.AddTransient<ICheckout, CheckoutService>();
+            services.AddTransient<IContact, ContactService>();
+
             services.AddAzureClients(builder =>
             {
                 builder.AddBlobServiceClient(Configuration["ConnectionStrings:AzureContainers:blob"], preferMsi: true);

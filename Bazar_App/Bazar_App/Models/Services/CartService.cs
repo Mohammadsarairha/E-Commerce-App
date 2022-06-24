@@ -25,7 +25,8 @@ namespace Bazar_App.Models.Services
                 Id = cart.Id,
                 TotalCost = cart.TotalCost,
                 TotalQuantity = cart.TotalQuantity,
-                UserId = cart.UserId
+                UserId = cart.UserId,
+                State = cart.State
             };
 
             return newCart;
@@ -39,6 +40,7 @@ namespace Bazar_App.Models.Services
                 TotalCost = cart.TotalCost,
                 TotalQuantity = cart.TotalQuantity,
                 UserId = cart.UserId,
+                State = cart.State,
                 Products = cart.CartProducts.Select(cp => new ProductDto
                 {
                     Id = cp.Products.Id,
@@ -75,6 +77,7 @@ namespace Bazar_App.Models.Services
                 TotalCost = cart.TotalCost,
                 TotalQuantity = cart.TotalQuantity,
                 UserId = cart.UserId,
+                State = cart.State,
                 Products = cart.CartProducts.Select(cp => new ProductDto
                 {
                     Id = cp.Products.Id,
@@ -97,9 +100,9 @@ namespace Bazar_App.Models.Services
             return cart;
         }
 
-        public async Task<CartDto> GetUserCart(string userId)
+        public async Task<CartDto> GetUserCart(string userId , int state)
         {
-            Cart userCart = await _context.Carts.FirstOrDefaultAsync(c => c.UserId == userId);
+            Cart userCart = await _context.Carts.Where(c => c.UserId == userId && c.State == state).FirstAsync();
             if (userCart == null)
             {
                 return null;
@@ -108,19 +111,32 @@ namespace Bazar_App.Models.Services
             return cartDto ;
         }
 
-        public async Task<CartDto> UpdateCart(int id, Cart cart)
+        public async Task<List<Cart>> GetUserCarts(string userId, int state)
         {
-            CartDto cartDto = new CartDto
-            {
-                Id = cart.Id,
-                TotalCost = cart.TotalCost,
-                TotalQuantity = cart.TotalQuantity,
-                UserId = cart.UserId
-            };
-            _context.Entry(cart).State = EntityState.Modified;
-            await _context.SaveChangesAsync();
+            List<Cart> userCarts = await _context.Carts.Where(c => c.UserId == userId && c.State == state).ToListAsync();
+            
+            return userCarts;
+        }
 
-            return cartDto;
+        public bool GetCartByUserId(string userId , int state)
+        {
+            bool existsCart = _context.Carts.Any(c => c.UserId == userId && c.State == state);
+
+            return existsCart;
+        }
+
+        public bool GetCartById(int id)
+        {
+            bool existsCart = _context.Carts.Any(c => c.Id == id);
+
+            return existsCart;
+        }
+
+        public async Task UpdateCart(int id, Cart cart)
+        {
+            Cart findCart = await _context.Carts.FindAsync(id);
+            findCart.State = 1;
+            await _context.SaveChangesAsync();
         }
 
         public async Task Delete(int id)
@@ -205,7 +221,7 @@ namespace Bazar_App.Models.Services
                 int count = 0;
                 foreach (var item in cart.Products)
                 {
-                    Total += item.Price * QuantityList[0];
+                    Total += item.Price * QuantityList[count];
                     count++;
                 }
                 return Total;

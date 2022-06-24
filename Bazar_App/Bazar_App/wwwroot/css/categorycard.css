@@ -3,11 +3,9 @@
 * {
     box-sizing: border-box;
 }
-
-body {
-    font-family: "Raleway";
+.body {
+    background: linear-gradient(to bottom right, #E3F0FF, #FAFCFF);
 }
-
 .card {
     width: 50%;
     height: 375px;

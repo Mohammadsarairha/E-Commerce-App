@@ -26,20 +26,21 @@ namespace Bazar_App.Pages
 
         public async Task OnGet()
         {
-            CookieOptions cookieOptions = new CookieOptions();
-            cookieOptions.Expires = new System.DateTimeOffset(DateTime.Now.AddDays(7));
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            CartDto cartData = await _cart.GetUserCart(userId);
-            if (cartData != null)
+            if (_cart.GetCartByUserId(userId, 0))
             {
-                HttpContext.Response.Cookies.Append("count", cartData.TotalQuantity.ToString(), cookieOptions);
+                CartDto cartData = await _cart.GetUserCart(userId, 0);
+                if (cartData != null)
+                {
+                    HttpContext.Response.Cookies.Append("count", cartData.TotalQuantity.ToString());
+                }
             }
             category = await _category.GetCategories();
         }
 
         public IActionResult OnPost(int id)
         {
-            return Redirect($"/Products?id={id}");
+            return Redirect($"/Products/{id}");
         }
     }
 }

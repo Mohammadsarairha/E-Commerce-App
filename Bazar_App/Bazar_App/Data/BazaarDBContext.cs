@@ -14,6 +14,8 @@ namespace Bazar_App.Data
         public DbSet<Category> Categories { get; set; }
         public DbSet<Cart> Carts { get; set; }
         public DbSet<CartProduct> CartProduct { get; set; }
+        public DbSet<Checkout> Checkout { get; set; }
+        public DbSet<Contact> Contact { get; set; }
 
         public BazaarDBContext(DbContextOptions options) : base(options)
         {

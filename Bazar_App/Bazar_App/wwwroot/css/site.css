@@ -3,9 +3,8 @@
 
 body {
     margin: 0;
-    font-family: "Raleway";
-    background: linear-gradient(to bottom right, #E3F0FF, #FAFCFF);
-    
+    font-family: Georgia;
+    background-color:white;
 }
 input,
 select,
@@ -16,10 +15,12 @@ textarea {
 /* styles for validation helpers */
 .field-validation-error {
     color: #b94a48;
+    font-size: 12px;
 }
 
 .field-validation-valid {
     display: none;
+    font-size:12px;
 }
 
 input.input-validation-error {
@@ -32,6 +33,8 @@ input[type="checkbox"].input-validation-error {
 
 .validation-summary-errors {
     color: #b94a48;
+    font-size: 12px;
+    letter-spacing:0.5px;
 }
 
 .validation-summary-valid {
@@ -42,16 +45,37 @@ input[type="checkbox"].input-validation-error {
 .field-validation-error {
     color: #e80c0c;
     font-weight: bold;
+    font-size: 12px;
 }
 
 .nav {
-    background-color: #8EB7EB;
+    background-color: #26272b;
 }
 ul.nav {
     list-style-type: none;
     margin: 0;
     padding: 0;
     overflow: hidden;
+}
+#login {
+    position: absolute;
+    float: right;
+    right: 100px;
+}
+#logout {
+    position: absolute;
+    float: right;
+    right: 100px;
+}
+#signup {
+    position: absolute;
+    float: right;
+    right: 170px;
+}
+#username {
+    position: absolute;
+    float: right;
+    right: 170px;
 }
 #cart {
     position: absolute;
@@ -109,26 +133,18 @@ ul.nav {
         padding: 14px 16px;
         text-decoration: none;
     }
-    li.navli a:hover {
-            background-color: #B8D7FF;
-
-    }
 
 #logo {
     display: block;
-    color: white;
-    color:black;
+    color: #8EB7EB;
     padding: 14px 16px;
     text-decoration: none;
+    width: 20px;
     font-weight: bold;
-    margin-right:40px;
-    margin-left:10px;
-    content:auto;
+    margin-right: 100px;
+    margin-left: 30px;
+    content: auto;
 }
-
-    #logo:hover {
-        background-color: #8EB7EB;
-    }
 
 #fa-cart {
     font-size:24px;
@@ -138,8 +154,11 @@ ul.nav {
     margin-top:10px;
 }
 #input {
+    display: block;
     width: 100%;
     padding: 10px;
+    margin-left: auto;
+    margin-right: auto;
     border: 1px solid #ccc;
     border-radius: 4px;
     margin-top: 5px;
@@ -148,7 +167,7 @@ ul.nav {
 }
 
 #submit {
-    background-color: #8EB7EB;
+    background-color: dodgerblue;
     display: block;
     margin-left: auto;
     margin-right: auto;
@@ -162,7 +181,7 @@ ul.nav {
 }
 
     #submit:hover {
-        background-color: #B8D7FF;
+        background-color: black;
     }
 
 .container {
@@ -185,23 +204,8 @@ ul.nav {
         padding-top: 10px;
     }
 
-#page-container {
-    position: relative;
-    min-height: 100vh;
-    overflow:hidden;
-}
 
 #content-wrap {
     /* Footer height */
     padding-bottom: 2.5rem;
-}
-
-#footer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: 3rem; /* Footer height */
-    background-color: #8EB7EB;
-    color: white;
-    text-align: center;
 }
