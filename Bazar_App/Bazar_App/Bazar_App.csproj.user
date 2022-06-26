@@ -11,7 +11,7 @@
     <WebStackScaffolding_IsReferencingScriptLibrariesSelected>True</WebStackScaffolding_IsReferencingScriptLibrariesSelected>
     <WebStackScaffolding_DbContextTypeFullName>Bazar_App.Data.BazaarDBContext</WebStackScaffolding_DbContextTypeFullName>
     <WebStackScaffolding_EnablerDialogWidth>650</WebStackScaffolding_EnablerDialogWidth>
-    <NameOfLastUsedPublishProfile>C:\Users\HP\Source\Repos\E-Commerce-App\Bazar_App\Bazar_App\Properties\PublishProfiles\BazarApp - Web Deploy.pubxml</NameOfLastUsedPublishProfile>
+    <NameOfLastUsedPublishProfile>C:\Users\HP\source\repos\E-Commerce-App\Bazar_App\Bazar_App\Properties\PublishProfiles\BazaarApp - Web Deploy.pubxml</NameOfLastUsedPublishProfile>
     <RazorPage_SelectedScaffolderID>RazorPageScaffolder</RazorPage_SelectedScaffolderID>
     <RazorPage_SelectedScaffolderCategoryPath>root/Common/RazorPage</RazorPage_SelectedScaffolderCategoryPath>
   </PropertyGroup>

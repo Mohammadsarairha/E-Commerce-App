@@ -1,0 +1,43 @@
+﻿.mail {
+    margin: auto;
+    width: 50%;
+    margin-top: 120px;
+    margin-bottom: 120px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+    transition: all 0.3s;
+    padding: 10px;
+    text-align: center;
+}
+    .mail:hover {
+        box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+    .mail img {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 50%;
+    }
+    .mail a {
+        background-color: DodgerBlue;
+        border: none;
+        color: white;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        padding: 8px 12px;
+        font-size: 16px;
+        border-radius: 20px;
+        text-decoration:none;
+    }
+    .mail a:hover{
+        background-color:black;
+    }
+    .mail p{
+        margin:25px;
+    }
+#contact {
+    background: none;
+    color: black;
+    font-weight: bold;
+    color:dodgerblue;
+}
