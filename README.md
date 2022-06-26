@@ -76,4 +76,4 @@ I started to create a User Interface (UI) by using  Razor Pages, So users can se
 
 ## Azure deployment 
 
-[Bazar App](https://bazaarapp.azurewebsites.net/)
+[Bazaar App](https://bazaarapp.azurewebsites.net/)
