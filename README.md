@@ -66,11 +66,14 @@ from this point and because we belive that selling and buying is part and parcel
 - As an administrator I would like to be able to edit/modify categories so that I can change my storefront structure in real time
 - As an administrator I would like to be able to edit/modify products so that I can change my inventory in real time
 
-## User experience
+
+## Plannig 
 
 Pre-planning the project by understanding the requirements of the project before implementation, creating an er diagram for the project and understanding the relationships between tables, understanding user stores, and creating a complete project correctly and properly organized by using dependency injection (DI) software design pattern, which is a technique for achieving Inversion of Control (IoC) between classes and their dependencies, And using Data Transfer objects(Dto's) is a data container for moving data between layers, Create Wireframes for all site pages.
 Deployed my project in Azure cloud engineer. And also using Azure services such as Azure storage to upload all pics used in the project in it.
 After I did Pre-planning the project by understanding the requirements of the project before implementation, creating an er diagram for the project, and understanding the relationships between tables.
+
+## User experience
 
 I started to create a User Interface (UI) by using  Razor Pages, So users can see all products and browse the website without even needing to log in, But if users want to shop and buy stuff need to log in if a user doesn't have an account can create one, After that user can have own cart, Can delete the product and add one there are all details show in his cats like total cost and total quantity, After that customer need to fill shipping form like address and phone number email user name, After that we sent to user invoice have all order details in his email after confirming the order by using Azure services SendGrid to sent email to the user finally user have thanks page , If user facing any problem in this experience can easily contact us.
 
